@@ -2,16 +2,12 @@ package io.netty.listener;
 
 import io.netty.common.NettyConstants;
 import io.netty.http.websocketx.server.WebSocketServer;
-import io.netty.telnet.TelnetServer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.djt.v2.controller.netty.OffLineJsonController;
 
 
 public class IosNettyContextListener implements ServletContextListener{
@@ -34,18 +30,18 @@ public class IosNettyContextListener implements ServletContextListener{
 	}
 	private void initIosTelnetServer(ServletContext servletContext) {
 		
-		logger.info("Õë¶ÔiosÆô¶¯netty·þÎñ¿ªÊ¼");
+		logger.info("ï¿½ï¿½ï¿½iosï¿½ï¿½ï¿½ï¿½nettyï¿½ï¿½ï¿½ï¿½Ê¼");
 		if(webSocketServer==null){
 			int port = NettyConstants.IOS_PORT;
 			try {
 				webSocketServer =new WebSocketServer(port);
 				
 				webSocketServer.run();
-				logger.info("Õë¶ÔiosÆô¶¯netty·þÎñ³É¹¦");
+				logger.info("ï¿½ï¿½ï¿½iosï¿½ï¿½ï¿½ï¿½nettyï¿½ï¿½ï¿½ï¿½É¹ï¿½");
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				logger.info("Õë¶ÔiosÆô¶¯netty·þÎñÊ§°Ü");
+				logger.info("ï¿½ï¿½ï¿½iosï¿½ï¿½ï¿½ï¿½nettyï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 				if(webSocketServer !=null){
 					webSocketServer=null;
 				}

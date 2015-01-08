@@ -15,6 +15,7 @@
  */
 package io.netty.http.websocketx.server;
 
+import com.alibaba.fastjson.JSONObject;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -25,17 +26,12 @@ import io.netty.common.NettyConstants;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
-import io.netty.handler.codec.http.websocketx.CloseWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.WebSocketFrame;
-import io.netty.handler.codec.http.websocketx.WebSocketServerHandshaker;
-import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
+import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.po.MobileChannel;
 import io.netty.util.CharsetUtil;
+import org.apache.commons.lang.StringUtils;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -43,19 +39,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.djt.v2.pojo.OffLine;
-import com.djt.v2.service.netty.OffLineService;
-import com.djt.v2.utils.ContextUtils;
-
-import static io.netty.handler.codec.http.HttpHeaders.Names.*;
-import static io.netty.handler.codec.http.HttpHeaders.*;
-import static io.netty.handler.codec.http.HttpMethod.*;
+import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
+import static io.netty.handler.codec.http.HttpHeaders.Names.HOST;
+import static io.netty.handler.codec.http.HttpHeaders.isKeepAlive;
+import static io.netty.handler.codec.http.HttpHeaders.setContentLength;
+import static io.netty.handler.codec.http.HttpMethod.GET;
 import static io.netty.handler.codec.http.HttpResponseStatus.*;
-import static io.netty.handler.codec.http.HttpVersion.*;
+import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
  * Handles handshakes and messages
@@ -66,7 +56,7 @@ public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<
     private static final String WEBSOCKET_PATH = "/websocket";
     private int count;
     private WebSocketServerHandshaker handshaker;
-    /** ÀëÏß·þÎñ */
+    /** ï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½ */
 	private OffLineService offLineService;
 	private String userCode;
 	
@@ -188,38 +178,38 @@ public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<
 
     	try{
     		
-    		/*ÐÄÌø´¦Àí*/
+    		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
             if (evt instanceof IdleStateEvent) {
                 IdleStateEvent event = (IdleStateEvent) evt;
                 if (event.state() == IdleState.READER_IDLE) {
-                    /*¶Á³¬Ê±*/
+                    /*ï¿½ï¿½ï¿½ï¿½Ê±*/
                     
                     count++;
                     if(count>2){
-                    	System.out.println("READER_IDLE ¶Á³¬Ê±");
+                    	System.out.println("READER_IDLE ï¿½ï¿½ï¿½ï¿½Ê±");
                     	ctx.disconnect();	
                     }else{
-                    	System.out.println("¿ªÊ¼·¢ÐÄÌø");
-                    	logger.info("¿ªÊ¼·¢ÐÄÌø");
-                		////0£º±íÊ¾ping;1:±íÊ¾Á¬½Ó£»-1£º±íÊ¾¹Ø±ÕÁ¬½Ó£»2:±íÊ¾ÓÃ»§µÇÂ¼£»3£º±íÊ¾Êý¾ÝÍÆËÍ
+                    	System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                    	logger.info("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                		////0ï¿½ï¿½ï¿½ï¿½Ê¾ping;1:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó£ï¿½-1ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ó£ï¿½2:ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     					String pingJsons ="{\"respData\":[{\"flag\":\"0\",\"eachData\":\"ping\"}]}";
     					pingJsons=URLEncoder.encode(pingJsons, "UTF-8");//
     					ctx.write(pingJsons+"\r\n");
     					ctx.flush();
-    					logger.info("¿ªÊ¼·¢ÐÄÌø½áÊø");
+    					logger.info("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                     
                 } else if (event.state() == IdleState.WRITER_IDLE) {
-                    /*Ð´³¬Ê±*/   
-                    ///System.out.println("WRITER_IDLE Ð´³¬Ê±");
+                    /*Ð´ï¿½ï¿½Ê±*/   
+                    ///System.out.println("WRITER_IDLE Ð´ï¿½ï¿½Ê±");
                 } else if (event.state() == IdleState.ALL_IDLE) {
-                    /*×Ü³¬Ê±*/
-                    ///System.out.println("ALL_IDLE ×Ü³¬Ê±");
+                    /*ï¿½Ü³ï¿½Ê±*/
+                    ///System.out.println("ALL_IDLE ï¿½Ü³ï¿½Ê±");
                 }
             }
     		
     	}catch(Exception e){
-    		/// logger.error("Òì³£",e);
+    		/// logger.error("ï¿½ì³£",e);
     	}
     }
     
@@ -238,11 +228,11 @@ public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<
        	 jsonObj = myObj.getJSONObject("respData");	
        	 	
        	 	String flag=jsonObj.getString("flag");
-             //0£º±íÊ¾ping;1:±íÊ¾Á¬½Ó£»-1£º±íÊ¾¹Ø±ÕÁ¬½Ó£»2:±íÊ¾ÓÃ»§µÇÂ¼£»3£º±íÊ¾Êý¾ÝÍÆËÍ
+             //0ï¿½ï¿½ï¿½ï¿½Ê¾ping;1:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó£ï¿½-1ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ó£ï¿½2:ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if("2".equals(flag)){
 	        	String userCode = jsonObj.getString("userCode");
 	        	 String mobileFlag=jsonObj.getString("mobileFlag");
-	        	logger.info("×¢²áÓÃ»§ÐÅµÀ£º"+userCode);
+	        	logger.info("×¢ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Åµï¿½ï¿½ï¿½"+userCode);
 	        	 MobileChannel mobileChannel=new MobileChannel();
             	 mobileChannel.setCtx(ctx);
             	 mobileChannel.setMmobilieFlag(mobileFlag);
@@ -253,16 +243,16 @@ public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<
 	        		 NettyConstants.MAPCHANNEL.remove(userCode);
 	        		 NettyConstants.MAPCHANNEL.put(userCode, mobileChannel);
 	        	 }
-        		 offLineService=ContextUtils.getBean("offLineService");
+//        		 offLineService=ContextUtils.getBean("offLineService");
         		 list=offLineService.queryOffLineListByUserCode(userCode);
             	 if(list !=null &&list.size()>0){
-            		 logger.info("ÀëÏßÊý¾Ý¼ÇÂ¼Êý£º"+list.size());
+            		 logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½Â¼ï¿½ï¿½"+list.size());
             		 for(int j=0;j<list.size();j++){
             			 String pushJsons ="{\"respData\":[{\"flag\":\"3\",\"mdFlag\":\""+list.get(j).getMdFlag()+"\",\"eachData\":\""+list.get(j).getMessage()+"\"}]}";
  		        		 pushJsons=URLEncoder.encode(pushJsons,NettyConstants.ENCODE);//
  		        		 ctx.write(pushJsons+"\r\n");
  		        		 ctx.flush();
- 		        		offLineService.delOffLine(list.get(j).getId());//ÀëÏßÊý¾ÝÍÆËÍºó£¬ÔòÉ¾³ý¡£
+ 		        		offLineService.delOffLine(list.get(j).getId());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½É¾ï¿½ï¿½
             		 }
             	 }
             	 
@@ -270,7 +260,7 @@ public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<
             	 if(userCode !=null &&!"".equals(userCode)&&NettyConstants.MAPCHANNEL.containsKey(userCode)){
             		 NettyConstants.MAPCHANNEL.remove(userCode);
             	 }
-            	 ctx.disconnect();//¹Ø±ÕÁ¬½Ó 
+            	 ctx.disconnect();//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ 
              }
                 
            }

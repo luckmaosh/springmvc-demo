@@ -15,7 +15,8 @@
  */
 package io.netty.telnet;
 
-import io.netty.channel.Channel;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler.Sharable;
@@ -24,32 +25,15 @@ import io.netty.channel.ChannelInboundMessageHandlerAdapter;
 import io.netty.common.NettyConstants;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.http.websocketx.server.OffLine;
+import io.netty.http.websocketx.server.OffLineService;
 import io.netty.po.MobileChannel;
-import io.netty.po.UserPerson;
-
-import java.net.InetAddress;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.djt.v2.dao.netty.OffLineDao;
-import com.djt.v2.pojo.OffLine;
-import com.djt.v2.service.netty.OffLineService;
-import com.djt.v2.utils.ContextUtils;
-import com.djt.v2.utils.SpringContextUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Handles a server-side channel.
  */
@@ -61,7 +45,7 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
     private int count;
     private String userCode;
     
-    /** ÀëÏß·þÎñ */
+    /** ï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½ */
 	private OffLineService offLineService;
 
     @Override
@@ -78,35 +62,35 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
         String response="";;
         boolean close = false;
         List<OffLine> list = new ArrayList<OffLine>();
-        logger.info("½ÓÊÜ±¨ÎÄ1£º"+request);
+        logger.info("ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½1ï¿½ï¿½"+request);
         try{
         	 if (request !=null && !"".equals(request)&&request.indexOf("respData")>-1){
             	 //request = new String(request.getBytes(),"utf-8");   
-            	 logger.info("½ÓÊÜ±¨ÎÄ2£º"+request);
+            	 logger.info("ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½2ï¿½ï¿½"+request);
             	 JSONObject myObj = JSONObject.parseObject(request);
                  JSONArray myArray = myObj.getJSONArray("respData");
                  if(myArray !=null && myArray.size()==1){
-                	 logger.info("½ÓÊÜ±¨ÎÄ3£º"+request);
+                	 logger.info("ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½3ï¿½ï¿½"+request);
                 	 for(int i=0;i<myArray.size();i++)
                      {
-                		 logger.info("½ÓÊÜ±¨ÎÄ4£º"+request);
+                		 logger.info("ï¿½ï¿½ï¿½Ü±ï¿½ï¿½ï¿½4ï¿½ï¿½"+request);
     	                 JSONObject o = myArray.getJSONObject(i);
-    	                 ////0£º±íÊ¾ping;1:±íÊ¾Á¬½Ó£»-1£º±íÊ¾¹Ø±ÕÁ¬½Ó£»2:±íÊ¾ÓÃ»§µÇÂ¼£»3£º±íÊ¾Êý¾ÝÍÆËÍ
+    	                 ////0ï¿½ï¿½ï¿½ï¿½Ê¾ping;1:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó£ï¿½-1ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ó£ï¿½2:ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     	                 String flag=o.get("flag")+"";
     	                 
     	                 String eachData="";
     	                 count=0;
     	                 if("0".equals(flag)){
     	                	 eachData=o.get("eachData")+"";
-    	                	 System.out.println("Õë¶ÔÐÄÌø");
-    	                	 logger.info("Õë¶ÔÐÄÌø");
+    	                	 System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+    	                	 logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     	                 }else if("1".equals(flag)){
-    	                	 System.out.println("¿Í»§¶ËÒ»¿ªÊ¼Á¬½ÓµÄÊ±ºò£¬»¹Ã»ÓÐµÇÂ¼£¬Ôò×ßÕâÀï");
-    	                	 logger.info("¿Í»§¶ËÒ»¿ªÊ¼Á¬½ÓµÄÊ±ºò");
+    	                	 System.out.println("ï¿½Í»ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Óµï¿½Ê±ï¿½ò£¬»ï¿½Ã»ï¿½Ðµï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+    	                	 logger.info("ï¿½Í»ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Óµï¿½Ê±ï¿½ï¿½");
     	                 }else if("2".equals(flag)){
     	                	 String mobileFlag=o.getString("mobileFlag");
     	                	 String userCode=o.get("userCode")+"";
-    	                	 logger.info("×¢²áÓÃ»§ÐÅµÀ£º"+userCode);
+    	                	 logger.info("×¢ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Åµï¿½ï¿½ï¿½"+userCode);
     	                	 MobileChannel mobileChannel=new MobileChannel();
     	                	 mobileChannel.setCtx(ctx);
     	                	 mobileChannel.setMmobilieFlag(mobileFlag);
@@ -117,30 +101,30 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
     	                		 NettyConstants.MAPCHANNEL.remove(userCode);
     	                		 NettyConstants.MAPCHANNEL.put(o.get("userCode")+"", mobileChannel);
     	                	 }
-    	                	 ///ÓÃ»§µÇÂ¼ºó£¬Ê×ÏÈ²éÕÒ¸ÃÓÃ»§ÓÐÃ»ÓÐÀëÏßÊý¾Ý£¬È»ºóÖ÷¶¯ÍÆËÍ¡£
+    	                	 ///ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½È²ï¿½ï¿½Ò¸ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½
     	                	 /**
-    	                	  * flag=3 ±íÊ¾Êý¾ÝÍÆËÍ
-    	                	  * mdFlag =01  ±íÊ¾¿¼ÇÚ
-    						  * mdFlag =02  ±íÊ¾¼ÒÔ°ÁªÏµ
-    						  * mdFlag =03  ±íÊ¾³É³¤ÊÖ²á
-    						  * mdFlag =04  ±íÊ¾°à¼¶È¦
-    						  * mdFlag =05  ÉÏ´«ÕÕÆ¬
-    						  * mdFlag =06   ±íÊ¾Í¨ÖªÏûÏ¢
+    	                	  * flag=3 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    	                	  * mdFlag =01  ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+    						  * mdFlag =02  ï¿½ï¿½Ê¾ï¿½ï¿½Ô°ï¿½ï¿½Ïµ
+    						  * mdFlag =03  ï¿½ï¿½Ê¾ï¿½É³ï¿½ï¿½Ö²ï¿½
+    						  * mdFlag =04  ï¿½ï¿½Ê¾ï¿½à¼¶È¦
+    						  * mdFlag =05  ï¿½Ï´ï¿½ï¿½ï¿½Æ¬
+    						  * mdFlag =06   ï¿½ï¿½Ê¾Í¨Öªï¿½ï¿½Ï¢
     	                	  * 
     	                	  */
-    	                		 offLineService=ContextUtils.getBean("offLineService");
+//    	                		 offLineService=ContextUtils.getBean("offLineService");
     	                		 list=offLineService.queryOffLineListByUserCode(userCode);
     	                		 
     	                	 //}
     	                	 
     	                	 if(list !=null &&list.size()>0){
-    	                		 logger.info("ÀëÏßÊý¾Ý¼ÇÂ¼Êý£º"+list.size());
+    	                		 logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½Â¼ï¿½ï¿½"+list.size());
     	                		 for(int j=0;j<list.size();j++){
     	                			 String pushJsons ="{\"respData\":[{\"flag\":\"3\",\"mdFlag\":\""+list.get(j).getMdFlag()+"\",\"eachData\":\""+list.get(j).getMessage()+"\"}]}";
     	     		        		 pushJsons=URLEncoder.encode(pushJsons,NettyConstants.ENCODE);//
     	     		        		 ctx.write(pushJsons+"\r\n");
     	     		        		 ctx.flush();
-    	     		        		offLineService.delOffLine(list.get(j).getId());//ÀëÏßÊý¾ÝÍÆËÍºó£¬ÔòÉ¾³ý¡£
+    	     		        		offLineService.delOffLine(list.get(j).getId());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½É¾ï¿½ï¿½
     	                		 }
     	                	 }
     	                	 
@@ -148,12 +132,12 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
     	                	 if(userCode !=null &&!"".equals(userCode)&&NettyConstants.MAPCHANNEL.containsKey(userCode)){
     	                		 NettyConstants.MAPCHANNEL.remove(userCode);
     	                	 }
-    	                	 ctx.disconnect();//¹Ø±ÕÁ¬½Ó 
+    	                	 ctx.disconnect();//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ 
     	                 }else if("3".equals(flag)){
-    	                	  ////0£º±íÊ¾ping;1:±íÊ¾Á¬½Ó£»-1£º±íÊ¾¹Ø±ÕÁ¬½Ó£»2:±íÊ¾ÓÃ»§µÇÂ¼£»3£º±íÊ¾Êý¾ÝÍÆËÍ
+    	                	  ////0ï¿½ï¿½ï¿½ï¿½Ê¾ping;1:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó£ï¿½-1ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ó£ï¿½2:ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     	                	 eachData=o.get("eachData")+"";
     	                	 System.out.println("eachData:"+eachData);
-    	                	 System.out.println("Ä¿Ç°²»ÐèÒªÊµÏÖ£¬ÆäËûµØ·½ÒÑ¾­ÊµÏÖ£¡£¡£¡");
+    	                	 System.out.println("Ä¿Ç°ï¿½ï¿½ï¿½ï¿½ÒªÊµï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ø·ï¿½ï¿½Ñ¾ï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½");
     	                 }
     	             	 
                      } 
@@ -162,7 +146,7 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
         }catch(Exception e){
         	ctx.disconnect();
         	System.out.println(e);
-        	logger.error("½âÎö±¨ÎÄÒì³£",e);
+        	logger.error("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£",e);
         }
        
 
@@ -179,7 +163,7 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.error("Òì³£",cause);
+        logger.error("ï¿½ì³£",cause);
         ctx.close();
     }
     
@@ -189,38 +173,38 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
 
     	try{
     		
-    		/*ÐÄÌø´¦Àí*/
+    		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
             if (evt instanceof IdleStateEvent) {
                 IdleStateEvent event = (IdleStateEvent) evt;
                 if (event.state() == IdleState.READER_IDLE) {
-                    /*¶Á³¬Ê±*/
+                    /*ï¿½ï¿½ï¿½ï¿½Ê±*/
                     
                     count++;
                     if(count>2){
-                    	System.out.println("READER_IDLE ¶Á³¬Ê±");
+                    	System.out.println("READER_IDLE ï¿½ï¿½ï¿½ï¿½Ê±");
                     	ctx.disconnect();	
                     }else{
-                    	System.out.println("¿ªÊ¼·¢ÐÄÌø");
-                    	logger.info("¿ªÊ¼·¢ÐÄÌø");
-                		////0£º±íÊ¾ping;1:±íÊ¾Á¬½Ó£»-1£º±íÊ¾¹Ø±ÕÁ¬½Ó£»2:±íÊ¾ÓÃ»§µÇÂ¼£»3£º±íÊ¾Êý¾ÝÍÆËÍ
+                    	System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                    	logger.info("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                		////0ï¿½ï¿½ï¿½ï¿½Ê¾ping;1:ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó£ï¿½-1ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ó£ï¿½2:ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     					String pingJsons ="{\"respData\":[{\"flag\":\"0\",\"eachData\":\"ping\"}]}";
     					pingJsons=URLEncoder.encode(pingJsons, "UTF-8");//
     					ctx.write(pingJsons+"\r\n");
     					ctx.flush();
-    					logger.info("¿ªÊ¼·¢ÐÄÌø½áÊø");
+    					logger.info("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                     
                 } else if (event.state() == IdleState.WRITER_IDLE) {
-                    /*Ð´³¬Ê±*/   
-                    ///System.out.println("WRITER_IDLE Ð´³¬Ê±");
+                    /*Ð´ï¿½ï¿½Ê±*/   
+                    ///System.out.println("WRITER_IDLE Ð´ï¿½ï¿½Ê±");
                 } else if (event.state() == IdleState.ALL_IDLE) {
-                    /*×Ü³¬Ê±*/
-                    ///System.out.println("ALL_IDLE ×Ü³¬Ê±");
+                    /*ï¿½Ü³ï¿½Ê±*/
+                    ///System.out.println("ALL_IDLE ï¿½Ü³ï¿½Ê±");
                 }
             }
     		
     	}catch(Exception e){
-    		 logger.error("Òì³£",e);
+    		 logger.error("ï¿½ì³£",e);
     	}
         
     }

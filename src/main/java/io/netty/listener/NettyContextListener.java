@@ -2,15 +2,12 @@ package io.netty.listener;
 
 import io.netty.common.NettyConstants;
 import io.netty.telnet.TelnetServer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.djt.v2.controller.netty.OffLineJsonController;
 
 
 public class NettyContextListener implements ServletContextListener{
@@ -26,7 +23,7 @@ public class NettyContextListener implements ServletContextListener{
 	}
 	private void initTelnetServer(ServletContext servletContext) {
 		
-		logger.info("Æô¶¯netty·þÎñ¿ªÊ¼");
+		logger.info("ï¿½ï¿½ï¿½ï¿½nettyï¿½ï¿½ï¿½ï¿½Ê¼");
 		if(telnetServer==null){
 			int port = NettyConstants.PORT;
 			try {
@@ -35,11 +32,11 @@ public class NettyContextListener implements ServletContextListener{
 				//NettyThread nthread = new NettyThread(telnetServer);
 				//nthread.start();
 				telnetServer.startService();
-				logger.info("Æô¶¯netty·þÎñ³É¹¦");
+				logger.info("ï¿½ï¿½ï¿½ï¿½nettyï¿½ï¿½ï¿½ï¿½É¹ï¿½");
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				logger.info("Æô¶¯netty·þÎñÊ§°Ü");
+				logger.info("ï¿½ï¿½ï¿½ï¿½nettyï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 				if(telnetServer !=null){
 					telnetServer.stopService();
 					telnetServer=null;
