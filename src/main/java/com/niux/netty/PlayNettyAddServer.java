@@ -23,7 +23,7 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 
 /**
  * 报文格式：request=a+b, response=c
- * 
+ *
  * @author 陈坚 2013年6月18日下午2:47:04
  */
 
@@ -41,13 +41,14 @@ public class PlayNettyAddServer {
             String requestStr = new String(inputBuf.array());
 
             //解析request报文并计算
-            String[] params = requestStr.split("\\+");
-            if (params.length != 2) {
-                return;
-            }
-            int a = Integer.parseInt(params[0].trim());
-            int b = Integer.parseInt(params[1].trim());
-            String result = String.valueOf(a + b);
+//            String[] params = requestStr.split("\\+");
+//            if (params.length != 2) {
+//                return;
+//            }
+//            int a = Integer.parseInt(params[0].trim());
+//            int b = Integer.parseInt(params[1].trim());
+//            String result = String.valueOf(a + b);
+            String result = "hello " + requestStr;
 
             //回送response报文
             Channel channel = e.getChannel();
@@ -90,11 +91,11 @@ public class PlayNettyAddServer {
         Thread.sleep(20 * 1000);
 
         //开始释放资源
-        System.out.println("服务器开始关闭...");
-        System.out.println("关闭所有channel");
-        ChannelGroupFuture closeFuture = allChannels.close();
-        closeFuture.awaitUninterruptibly();
-        System.out.println("释放外部资源");
-        channelFactory.releaseExternalResources();
+//        System.out.println("服务器开始关闭...");
+//        System.out.println("关闭所有channel");
+//        ChannelGroupFuture closeFuture = allChannels.close();
+//        closeFuture.awaitUninterruptibly();
+//        System.out.println("释放外部资源");
+//        channelFactory.releaseExternalResources();
     }
 }
