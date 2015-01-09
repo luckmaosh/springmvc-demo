@@ -31,6 +31,12 @@ public class TelnetClientHandler extends ChannelInboundMessageHandlerAdapter<Str
     private static final Logger logger = Logger.getLogger(
             TelnetClientHandler.class.getName());
 
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+//        ctx.fireChannelUnregistered();
+    }
+
     @Override
     public void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
         // Print out the line received from the server.

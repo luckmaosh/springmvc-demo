@@ -63,6 +63,12 @@ public class WebSocketClientHandler extends ChannelInboundMessageHandlerAdapter<
         return handshakeFuture;
     }
 
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+//        ctx.fireChannelUnregistered();
+    }
+
+
 //    @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         handshakeFuture = ctx.newPromise();

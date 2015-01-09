@@ -48,6 +48,11 @@ public class TelnetServerHandler extends ChannelInboundMessageHandlerAdapter<Str
     /** ���߷��� */
 	private OffLineService offLineService;
 
+	@Override
+	public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+//   maso     ctx.fireChannelUnregistered();
+	}
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // Send greeting for a new connection.

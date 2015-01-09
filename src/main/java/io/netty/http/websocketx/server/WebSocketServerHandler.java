@@ -48,7 +48,8 @@ import static io.netty.handler.codec.http.HttpResponseStatus.*;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 /**
- * Handles handshakes and messages
+ * Handles handshakes and messages               Error:(53, 8) java: /data/git/springMvcDemo/src/main/java/io/netty/http/websocketx/server/WebSocketServerHandler.java:53: io.netty.http.websocketx.server.WebSocketServerHandler 不是抽象的，并且未覆盖 io.netty.channel.ChannelStateHandler
+ * 中的抽象方法 channelUnregistered(io.netty.channel.ChannelHandlerContext)
  */
 public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<Object> {
     private static final Logger logger = Logger.getLogger(WebSocketServerHandler.class.getName());
@@ -59,6 +60,12 @@ public class WebSocketServerHandler extends ChannelInboundMessageHandlerAdapter<
     /** ���߷��� */
 	private OffLineService offLineService;
 	private String userCode;
+
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+//        ctx.fireChannelUnregistered();
+    }
 	
     @Override
     public void messageReceived(ChannelHandlerContext ctx, Object msg) throws Exception {
