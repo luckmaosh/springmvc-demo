@@ -20,6 +20,14 @@
 
     <context:annotation-config />
 
+
+    <context:property-placeholder location="classpath*:*/*.properties" ignore-unresolvable="true"/>
+
+
+
+    <import resource="classpath*:spring-jedis.xml"/>
+
+
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
         <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/springmvc"></property>
