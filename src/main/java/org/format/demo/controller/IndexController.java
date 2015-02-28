@@ -50,6 +50,7 @@ public class IndexController {
             e.printStackTrace();
         }
 
+        //找到index对应的视图，在WEB-INF/view下
         ModelAndView view = new ModelAndView("index");
         view.addObject("welcome", "hello");
         return view;
