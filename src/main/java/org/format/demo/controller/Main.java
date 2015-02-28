@@ -1,5 +1,6 @@
 package org.format.demo.controller;
 
+import org.format.demo.service.CouponService;
 import org.format.demo.transaction.NoTransactinService;
 import org.format.demo.transaction.UserService;
 import org.springframework.context.ApplicationContext;
@@ -15,13 +16,17 @@ public class Main {
         String name = "sss3";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springConfig/applicationContext.xml");
 
+        CouponService bean = applicationContext.getBean(CouponService.class);
+        String s = bean.sayHello(name);
+        System.out.println(s);
+
         //有事务保证
-        UserService userService = (UserService) applicationContext.getBean("proxyFactoryBean");
-        userService.insert(name);
+//        UserService userService = (UserService) applicationContext.getBean("proxyFactoryBean");
+//        userService.insert(name);
 
         //无事务保证
-        NoTransactinService noTransactinService = (NoTransactinService) applicationContext.getBean("noTransactinService");
-        noTransactinService.insert(name);
+//        NoTransactinService noTransactinService = (NoTransactinService) applicationContext.getBean("noTransactinService");
+//        noTransactinService.insert(name);
 
     }
 }

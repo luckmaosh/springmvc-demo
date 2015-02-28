@@ -14,6 +14,12 @@
           http://www.springframework.org/schema/aop
           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd" default-autowire="byName">
 
+    <import resource="classpath*:spring-jedis.xml"/>
+    <import resource="applicationContext-dubbo.xml"/>
+    <import resource="applicationContext-tx.xml"/>
+    <import resource="classpath:applicationContext-coupon-client.xml"/>
+
+
     <context:component-scan base-package="org.format.demo">
         <context:exclude-filter type="regex" expression="org.format.demo.controller.*"/>
     </context:component-scan>
@@ -35,8 +41,7 @@
     <context:property-placeholder location="classpath*:*/*.properties" ignore-unresolvable="true"/>
 
 
-    <import resource="classpath*:spring-jedis.xml"/>
-    <import resource="applicationContext-tx.xml"/>
+
 
     <!--事务-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
