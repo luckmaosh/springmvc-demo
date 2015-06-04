@@ -20,4 +20,5 @@ CREATE TABLE `user` (
   `name` varchar(32) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
+
 );
