@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%-5p:%m %n %X{client}:%X{controller}.%X{action}==> %l%n"/>
+        </layout>
+    </appender> 
+    
+    <appender name="certcodeAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_certcode.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d{yyyy-MM-dd-HH:mm:ss} %-5p:%m %n==> %l%n"/>
+        </layout>
+    </appender>
+    
+	<logger name="net.paoding.rose" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+	<logger name="xceStat" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+	<logger name="com.xiaonei" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    <!-- 映射信息debug -->
+    <logger name="net.paoding.rose.RoseFilter" additivity="false">
+        <level value="warn"/><appender-ref ref="stdout"/>
+    </logger>
+    <logger name="net.paoding.rose.web.controllers.roseInfo" additivity="false">
+        <level value="warn"/><appender-ref ref="stdout"/>
+    </logger>
+    <logger name="net.paoding.rose.web.controllers.roseInfo.AccessControlInterceptor" additivity="false">
+        <level value="warn"/><appender-ref ref="stdout"/>
+    </logger>
+    <logger name="net.paoding.rose.web.controllers.roseInfo.TreeController" additivity="false">
+        <level value="warn"/><appender-ref ref="stdout"/>
+    </logger>
+    <logger name="net.paoding.rose.web.impl.thread.Rose" additivity="false">
+        <level value="warn"/><appender-ref ref="stdout"/>
+    </logger>
+    <logger name="net.paoding.rose.web.impl.mapping.MappingNode" additivity="false">
+        <level value="warn"/><appender-ref ref="stdout"/>
+    </logger>
+    
+    <!-- 统计数据，每天一个 -->
+    <appender name="statAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_stat.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+    <!-- 购买，每天一个 -->
+    <appender name="buyAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_buy.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd-HH:mm:ss} %-5p:%m %n==> %l%n%n"/>
+        </layout>
+    </appender>
+
+    <appender name="payBackAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_pay.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%-5p:%m %n==> %l%n"/>
+        </layout>
+    </appender>
+
+    <appender name="userOrderAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_user_order.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %n"/>
+        </layout>
+    </appender>
+	<appender name="dsAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_ds.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d{yyyy-MM-dd-HH:mm:ss} %-5p:%m %n==> %l%n"/>
+        </layout>
+    </appender>
+    <appender name="gatewayRefundAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_gateway_refund.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d{yyyy-MM-dd-HH:mm:ss} %-5p:%m %n==> %l%n"/>
+        </layout>
+    </appender>
+    <logger name="org.springframework" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    <logger name="com.niux.utils" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    
+    <logger name="org.apache" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    
+    <logger name="net.paoding.rose.jade" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+
+    <!-- 主站-->
+    <logger name="com.niux" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <!-- 统计数据, debug -->
+    <logger name="com.niux.web.util.StatLogUtil" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="statAppender"/>
+    </logger>
+    <logger name="com.niux.web.util.ConnectUtil" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    <!-- 购买错误数据 -->
+    <logger name="userOrder" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="userOrderAppender"/>
+    </logger>
+    <!-- 购买错误数据 -->
+    <logger name="buy" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="buyAppender"/>
+    </logger>
+    <!-- 外部支付回调log -->
+    <logger name="payBack" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="payBackAppender"/>
+    </logger>
+    <logger name="com.niux.core.biz.intelligence.impl" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+	<logger name="ds" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="dsAppender"/>
+    </logger>
+	<logger name="certcode" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="certcodeAppender"/>
+    </logger>
+    <logger name="gatewayRefund" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="gatewayRefundAppender"/>
+    </logger>
+    <appender name="niuxOrderAppender" class="org.apache.flume.clients.log4jappender.Log4jAppender">
+        <param name="Hostname" value="10.4.20.127"/>
+        <param name="Port" value="10002"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %n"/>
+        </layout>
+    </appender>
+    
+    <appender name="niuxOrderLocalAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_order.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %n"/>
+        </layout>
+    </appender>
+
+    <logger name="niux_order" additivity="false">
+        <level value="error"/>
+        <appender-ref ref="niuxOrderAppender"/>
+        <appender-ref ref="niuxOrderLocalAppender"/>
+    </logger>
+    
+    <appender name="walletlockAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_walletlock.log"/>
+        <param name="DatePattern" value="'_'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d{yyyy-MM-dd-HH:mm:ss} %-5p:%m %n"/>
+        </layout>
+    </appender>
+
+    <logger name="walletlock" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="walletlockAppender"/>
+    </logger>
+
+    <root>
+        <level value="error"/>
+        <appender-ref ref="stdout"/>
+        <!--<appender-ref ref="file"/>-->
+    </root>
+
+    <appender name="clickStreamAppender" class="com.niux.logs.DailyRollingFileAppender">
+        <param name="File" value="/data/logs/niux_click_stream.log" />
+        <param name="MaxBackupIndex" value="14" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="time=%d{yyyy-MM-dd-HH:mm:ss}\t%m%n" />
+        </layout>
+    </appender>
+
+    <logger name="clickStream" additivity="false">
+        <level value="info" />
+        <appender-ref ref="clickStreamAppender" />
+    </logger>
+
+    
+</log4j:configuration>
