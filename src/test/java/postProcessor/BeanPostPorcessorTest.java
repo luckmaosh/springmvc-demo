@@ -10,7 +10,7 @@ public class BeanPostPorcessorTest extends TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        String[] paths = {"classpath*:/springConfig/applicationContext-*.xml"};
+        String[] paths = {"classpath*:/springConfig/applicationContext.xml"};
 
         context = new ClassPathXmlApplicationContext(paths);
 

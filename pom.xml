@@ -11,6 +11,7 @@
 
 
     <properties>
+        <snapshot>1.0-SNAPSHOT</snapshot>
         <spring.version>4.0.6.RELEASE</spring.version>
         <jar.environment>1.0-trunk-SNAPSHOT</jar.environment>
         <zookeeper.version>3.3.3</zookeeper.version>
@@ -19,7 +20,26 @@
 
 
     <dependencies>
-
+        <dependency>
+            <groupId>net.paoding</groupId>
+            <artifactId>paoding-rose-context</artifactId>
+            <version>${snapshot}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.paoding</groupId>
+            <artifactId>paoding-rose-jade</artifactId>
+            <version>${snapshot}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.paoding</groupId>
+            <artifactId>paoding-rose-portal</artifactId>
+            <version>${snapshot}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.paoding</groupId>
+            <artifactId>paoding-rose</artifactId>
+            <version>${snapshot}</version>
+        </dependency>
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
@@ -201,7 +221,11 @@
             <version>1.7.4</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-weblogic</artifactId>
+            <version>2.1.7</version>
+        </dependency>
         <!--        servlet         -->
         <dependency>
             <groupId>javax.servlet</groupId>

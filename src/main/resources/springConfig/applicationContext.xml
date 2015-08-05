@@ -40,8 +40,6 @@
     <context:property-placeholder location="classpath*:*/*.properties" ignore-unresolvable="true"/>
 
 
-
-
     <!--事务-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
@@ -67,7 +65,13 @@
     <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
-
+    <bean id="postProcessorBean" class="postProcessor.PostProcessorBean">
+        <property name="username">
+            <value>ss</value>
+        </property>
+    </bean>
+    <bean id="myBeanPostProcessor" class="postProcessor.MyBeanPostProcessor"/>
+    <bean id="myBeanFactoryPostProcessor" class="postProcessor.MyBeanFactoryPostProcessor"/>
 
     <!--使用tx标签配置的拦截器-->
     <tx:annotation-driven transaction-manager="txManager"/>
