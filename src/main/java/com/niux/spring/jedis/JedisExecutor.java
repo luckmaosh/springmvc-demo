@@ -1,4 +1,4 @@
-package jedis;
+package com.niux.spring.jedis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

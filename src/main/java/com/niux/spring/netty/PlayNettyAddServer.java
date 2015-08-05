@@ -1,4 +1,4 @@
-package com.niux.netty;
+package com.niux.spring.netty;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
@@ -17,7 +17,6 @@ import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
 import org.jboss.netty.channel.group.ChannelGroup;
-import org.jboss.netty.channel.group.ChannelGroupFuture;
 import org.jboss.netty.channel.group.DefaultChannelGroup;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 

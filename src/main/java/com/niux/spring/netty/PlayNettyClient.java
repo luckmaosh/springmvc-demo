@@ -1,4 +1,4 @@
-package com.niux.netty;
+package com.niux.spring.netty;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;

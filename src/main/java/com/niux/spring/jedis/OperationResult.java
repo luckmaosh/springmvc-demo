@@ -1,4 +1,4 @@
-package jedis;
+package com.niux.spring.jedis;
 
 import redis.clients.jedis.ShardedJedis;
 

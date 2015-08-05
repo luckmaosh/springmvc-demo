@@ -1,8 +1,8 @@
 package org.format.demo.controller;
 
-import jedis.JedisExecutor;
-import jedis.JedisOperation;
-import jedis.OperationResult;
+import com.niux.spring.jedis.JedisExecutor;
+import com.niux.spring.jedis.JedisOperation;
+import com.niux.spring.jedis.OperationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

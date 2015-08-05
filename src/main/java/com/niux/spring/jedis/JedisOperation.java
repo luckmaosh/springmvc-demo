@@ -1,4 +1,4 @@
-package jedis;
+package com.niux.spring.jedis;
 
 /**
  * Created with IntelliJ IDEA.
