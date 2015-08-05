@@ -36,7 +36,7 @@ public class SimpleMDC {
 
         // configure via the configuration file "chapters/mdc/simpleMDC.xml"
         // which ships with the examples
-//        configureViaXML_File();
+        configureViaXML_File();
 
         // For educational purposes, the same configuration can
         // be accomplished programmatically.
@@ -79,12 +79,13 @@ public class SimpleMDC {
     }
 
     static void configureViaXML_File() {
+        ClassLoader classLoader = Thread.currentThread().getClass().getClassLoader();
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         try {
             JoranConfigurator configurator = new JoranConfigurator();
             configurator.setContext(lc);
             lc.reset();
-            URL url = Loader.getResourceBySelfClassLoader("simpleMDC.xml");
+            URL url = Loader.getResourceBySelfClassLoader("classpath:chapters/mdc/simpleMDC.xml");
             configurator.doConfigure(url);
         } catch (JoranException je) {
             StatusPrinter.print(lc);
