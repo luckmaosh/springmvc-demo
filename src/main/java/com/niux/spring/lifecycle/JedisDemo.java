@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2015 Baidu, Inc. All Rights Reserved.
  */
-package demo;
+package com.niux.spring.lifecycle;
 
 import redis.clients.jedis.Jedis;
 

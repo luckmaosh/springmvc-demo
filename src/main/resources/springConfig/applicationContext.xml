@@ -18,7 +18,7 @@
     <import resource="classpath*:spring-jedis.xml"/>
     <import resource="applicationContext-dubbo.xml"/>
     <import resource="applicationContext-tx.xml"/>
-
+    <import resource="dispatcher-servlet.xml"/>
 
     <context:component-scan base-package="org.format.demo">
         <context:exclude-filter type="regex" expression="org.format.demo.controller.*"/>

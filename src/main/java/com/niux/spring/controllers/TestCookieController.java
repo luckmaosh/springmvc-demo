@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by maoshaohui [maoshh88@gmail.com]
  * on 15/8/5.下午7:03
+ * 测试cookie
  */
 @Path("")
 public class TestCookieController {
