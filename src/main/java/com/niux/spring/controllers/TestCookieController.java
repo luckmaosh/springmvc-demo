@@ -36,6 +36,7 @@ public class TestCookieController {
         namecookie.setMaxAge(60 * 60 * 24 * 365);
         passwordcookie.setMaxAge(60 * 60 * 24 * 365);
         optioncookie.setMaxAge(60 * 60 * 24 * 365);
+        namecookie.setDomain(".focus.cn");
 
         response.addCookie(namecookie);
         response.addCookie(passwordcookie);
