@@ -26,6 +26,7 @@ public class FileController {
     @Get("download")
     public void downLoad(Invocation inv, @Param("fileName") String downFilename) throws IOException {
 
+
         HttpServletResponse response = inv.getResponse();
 
         response.setContentType("text/plain");
