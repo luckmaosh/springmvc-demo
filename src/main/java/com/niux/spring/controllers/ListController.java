@@ -1,9 +1,11 @@
 package com.niux.spring.controllers;
 
 import com.google.gson.JsonObject;
+import com.niux.spring.service.DemoService;
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.annotation.rest.Get;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 
@@ -14,6 +16,9 @@ import java.io.File;
 @Path("list")
 public class ListController extends BaseController {
 
+
+    @Autowired
+    private DemoService demoService;
 
     @Get("dir")
     public JsonObject list(Invocation inv) {
