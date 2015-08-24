@@ -343,6 +343,8 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
+
+
         </plugins>
         <finalName>generator</finalName>
     </build>

@@ -11,7 +11,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:springConfig/applicationContext.xml");
+        ApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         MySQLConnectionInfo connInfo = appContext.getBean(MySQLConnectionInfo.class);
         System.out.println(connInfo.getUrl());
         System.out.println(connInfo.getUserName());
