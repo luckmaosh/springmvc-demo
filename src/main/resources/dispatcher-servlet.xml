@@ -29,22 +29,22 @@
     </bean>
     <!-- 防止@ResponseBody出现的中文乱码 -->
 
-    <mvc:resources location="/static/" mapping="/static/**"/>
-    <mvc:annotation-driven/>
-    <context:component-scan base-package="org.format.demo.controller,org.format.demo.transaction" />
+    <!--<mvc:resources location="/static/" mapping="/static/**"/>-->
+    <!--<mvc:annotation-driven/>-->
+    <!--<context:component-scan base-package="org.format.demo.controller,org.format.demo.transaction" />-->
 
 
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/*"/>
-            <bean class="org.format.demo.interceptor.PublicInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*"/>-->
+            <!--<bean class="org.format.demo.interceptor.PublicInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <!--
     <import resource="classpath:springConfig/viewConfig/jsp.xml"/>
     -->
-    <import resource="classpath:springConfig/viewConfig/freemarker.xml"/>
+    <!--<import resource="classpath:springConfig/viewConfig/freemarker.xml"/>-->
 
 
 </beans>

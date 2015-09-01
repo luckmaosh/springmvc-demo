@@ -17,9 +17,6 @@ import java.io.File;
 public class ListController extends BaseController {
 
 
-    @Autowired
-    private DemoService demoService;
-
     @Get("dir")
     public JsonObject list(Invocation inv) {
 

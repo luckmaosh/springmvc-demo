@@ -42,28 +42,10 @@
     </bean>
 
 
-    <!--为每个bean生成事务代理-->
-    <bean id="userService" class="org.format.demo.transaction.UserServiceImpl">
-        <property name="ds" ref="crmDataSource"/>
-    </bean>
 
 
-    <bean id="proxyFactoryBean" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="target" ref="userService"/>
-        <property name="transactionManager" ref="crmTXManager"/>
-        <property name="transactionAttributes">
-            <props>
-                <!--事务传播规则-->
-                <prop key="*">PROPAGATION_REQUIRED</prop>
-            </props>
-        </property>
-
-    </bean>
 
 
-    <bean id="noTransactinService" class="org.format.demo.transaction.NoTransactinServiceImpl">
-        <property name="ds" ref="crmDataSource"/>
-    </bean>
 
 
 </beans>

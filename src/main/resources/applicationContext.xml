@@ -20,11 +20,6 @@
     <import resource="applicationContext-tx.xml"/>
     <import resource="dispatcher-servlet.xml"/>
 
-    <context:component-scan base-package="com.niux.spring"></context:component-scan>
-    <context:component-scan base-package="org.format.demo">
-        <context:exclude-filter type="regex" expression="org.format.demo.controller.*"/>
-    </context:component-scan>
-
 
     <!--注入配置文件-->
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -42,67 +37,60 @@
     <context:property-placeholder location="classpath*:*/*.properties" ignore-unresolvable="true"/>
 
 
-    <!--事务-->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/springmvc"></property>
-        <property name="user" value="root"></property>
-        <property name="password" value="nothing"></property>
-    </bean>
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="org.format.demo.model"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">
-                    org.hibernate.dialect.MySQLDialect
-                </prop>
-                <prop key="hibernate.show_sql">
-                    true
-                </prop>
-            </props>
-        </property>
-    </bean>
-    <!-- 定义事务管理器（声明式的事务） -->
-    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
-    <bean id="postProcessorBean" class="postProcessor.PostProcessorBean">
-        <property name="username">
-            <value>ss</value>
-        </property>
-    </bean>
-    <bean id="myBeanPostProcessor" class="postProcessor.MyBeanPostProcessor"/>
-    <bean id="myBeanFactoryPostProcessor" class="postProcessor.MyBeanFactoryPostProcessor"/>
+    <!--&lt;!&ndash;事务&ndash;&gt;-->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+        <!--<property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/springmvc"></property>-->
+        <!--<property name="user" value="root"></property>-->
+        <!--<property name="password" value="nothing"></property>-->
+    <!--</bean>-->
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="packagesToScan" value="org.format.demo.model"/>-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="hibernate.dialect">-->
+                    <!--org.hibernate.dialect.MySQLDialect-->
+                <!--</prop>-->
+                <!--<prop key="hibernate.show_sql">-->
+                    <!--true-->
+                <!--</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; 定义事务管理器（声明式的事务） &ndash;&gt;-->
+    <!--<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"></property>-->
+    <!--</bean>-->
 
     <!--使用tx标签配置的拦截器-->
-    <tx:annotation-driven transaction-manager="txManager"/>
+    <!--<tx:annotation-driven transaction-manager="txManager"/>-->
 
-    <aop:config>
-        <aop:advisor pointcut="execution(* org.format.demo.service.impl.*Service.*(..))" advice-ref="txAdvice"/>
-    </aop:config>
-    <tx:advice id="txAdvice" transaction-manager="txManager">
-        <tx:attributes>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="query*" read-only="true"/>
-            <tx:method name="find*" read-only="true"/>
-            <tx:method name="load*" read-only="true"/>
-            <tx:method name="*" rollback-for="Exception" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>
+    <!--<aop:config>-->
+        <!--<aop:advisor pointcut="execution(* org.format.demo.service.impl.*Service.*(..))" advice-ref="txAdvice"/>-->
+    <!--</aop:config>-->
+    <!--<tx:advice id="txAdvice" transaction-manager="txManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="get*" read-only="true"/>-->
+            <!--<tx:method name="query*" read-only="true"/>-->
+            <!--<tx:method name="find*" read-only="true"/>-->
+            <!--<tx:method name="load*" read-only="true"/>-->
+            <!--<tx:method name="*" rollback-for="Exception" propagation="REQUIRED"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
 
 
     <!--拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/connect/share/**"/>
-            <mvc:mapping path="/friend/**"/>
-            <mvc:mapping path="/*"/>
-            <mvc:mapping path="/account/get_bind"/>
-            <mvc:mapping path="/account/get_associate"/>
-            <bean class="com.niux.spring.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/connect/share/**"/>-->
+            <!--<mvc:mapping path="/friend/**"/>-->
+            <!--<mvc:mapping path="/*"/>-->
+            <!--<mvc:mapping path="/account/get_bind"/>-->
+            <!--<mvc:mapping path="/account/get_associate"/>-->
+            <!--<bean class="com.niux.spring.interceptor.LoginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
     <!--<bean id="loginInterceptor" class="com.niux.spring.interceptor.LoginInterceptor"/>-->
     <!--<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">-->
     <!--<property name="interceptors">-->
