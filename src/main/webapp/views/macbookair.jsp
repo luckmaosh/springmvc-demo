@@ -9,7 +9,7 @@
 <html>
 <head>
     <title></title>
-  <link rel="stylesheet" type="text/css" href="/views/mac.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/mac.css">
 </head>
 <body>
 <div class="board">
