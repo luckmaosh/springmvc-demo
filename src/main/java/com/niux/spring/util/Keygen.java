@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.zip.CRC32;
 
-public class keygen {
+public class Keygen {
     /**
      * @param s
      * @param i
@@ -115,7 +115,7 @@ public class keygen {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.err.printf("*** Usage: %s name%n", keygen.class.getCanonicalName());
+            System.err.printf("*** Usage: %s name%n", Keygen.class.getCanonicalName());
             System.exit(1);
         }
         Random r = new Random();
