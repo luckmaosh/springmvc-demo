@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <script>
-        $("#getOtherDomainThings").click(function () {
-            $.get("http://localhost:8080/Scripts/jquery-1.4.4.min.js", function (data) {
-                console.log(data)
-            })
-
-            $.get("http://localhost:8080/home/index", function (data) {
-                console.log(data)
-            })
-        })
+    <script type="text/javascript">
+        var localHandler = function(data){
+            alert('我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：' + data.result);
+        };
     </script>
+    <script type="text/javascript" src="http://www.remoteserver.com/static/js/remote.js"></script>
 </head>
 <body>
-
-<input type="button" id="getOtherDomainThings" value="click me"/>
 </body>
 </html>
