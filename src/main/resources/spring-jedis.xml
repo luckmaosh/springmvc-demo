@@ -48,7 +48,4 @@
         </constructor-arg>
     </bean>
 
-    <bean id="jedisExecutor" class="jedis.JedisExecutor">
-        <property name="shardedJedisPool" ref="shardedJedisPool"/>
-    </bean>
 </beans>
