@@ -1,0 +1,18 @@
+package com.niux.netty.zk;
+
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+
+/**
+ * Created by shaohui.mao
+ * on 16/3/14.上午8:35
+ */
+public class TaskConsole implements Watcher {
+
+
+
+
+    public void process(WatchedEvent event) {
+
+    }
+}

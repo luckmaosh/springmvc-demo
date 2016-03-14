@@ -160,7 +160,7 @@ public class JavaApiSample implements Watcher {
     /**
      * 收到来自Server的Watcher通知后的处理。
      */
-    @Override
+//    @Override
     public void process(WatchedEvent event) {
         System.out.println("收到事件通知：" + event.getState() + "\n");
         if (KeeperState.SyncConnected == event.getState()) {
