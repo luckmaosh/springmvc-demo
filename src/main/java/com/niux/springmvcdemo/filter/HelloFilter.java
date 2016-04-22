@@ -1,4 +1,4 @@
-package com.niux.netty.filter;
+package com.niux.springmvcdemo.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.niux.netty.interceptors;
+package com.niux.springmvcdemo.interceptors;
 
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

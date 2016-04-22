@@ -11,7 +11,7 @@
  * under the terms of the GNU Lesser General Public License version 2.1
  * as published by the Free Software Foundation.
  */
-package com.niux.netty.mdc;
+package com.niux.springmvcdemo.mdc;
 
 import java.net.URL;
 

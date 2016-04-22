@@ -1,4 +1,4 @@
-package com.niux.netty.zk;
+package com.niux.springmvcdemo.zk;
 
 /**
  * Created by shaohui.mao

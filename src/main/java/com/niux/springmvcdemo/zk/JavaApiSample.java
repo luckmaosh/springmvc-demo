@@ -1,9 +1,11 @@
-package com.niux.netty.zk;
+package com.niux.springmvcdemo.zk;
 
 import common.toolkit.java.util.ObjectUtil;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
@@ -15,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
  * @author nileader/nileader@gmail.com
  */
 public class JavaApiSample implements Watcher {
-
+    private static final Logger logger = LoggerFactory.getLogger(JavaApiSample.class);
     private static final int SESSION_TIMEOUT = 10000;
     private static final String CONNECTION_STRING = "127.0.0.1:2181";
     private static final String ZK_PATH = "/nileader";
@@ -33,7 +35,8 @@ public class JavaApiSample implements Watcher {
         this.releaseConnection();
         try {
             zk = new ZooKeeper(connectString, sessionTimeout, this);
-            connectedSemaphore.await();
+            logger.info("connected to zk ");
+            connectedSemaphore.await(); //not run yet,until countDown was invocation
         } catch (InterruptedException e) {
             System.out.println("连接创建失败，发生 InterruptedException");
             e.printStackTrace();
@@ -160,11 +163,11 @@ public class JavaApiSample implements Watcher {
     /**
      * 收到来自Server的Watcher通知后的处理。
      */
-//    @Override
     public void process(WatchedEvent event) {
         System.out.println("收到事件通知：" + event.getState() + "\n");
         if (KeeperState.SyncConnected == event.getState()) {
             connectedSemaphore.countDown();
+            logger.info("countDown");
         }
 
     }

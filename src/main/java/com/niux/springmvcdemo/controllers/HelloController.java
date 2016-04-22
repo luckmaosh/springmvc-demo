@@ -1,4 +1,4 @@
-package com.niux.netty.controllers;
+package com.niux.springmvcdemo.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

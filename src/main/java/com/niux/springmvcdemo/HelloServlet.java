@@ -1,4 +1,4 @@
-package com.niux.netty;
+package com.niux.springmvcdemo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

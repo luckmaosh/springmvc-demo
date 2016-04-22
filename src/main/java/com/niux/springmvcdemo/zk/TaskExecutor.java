@@ -1,4 +1,4 @@
-package com.niux.netty.zk;
+package com.niux.springmvcdemo.zk;
 
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -8,6 +8,8 @@ import org.apache.zookeeper.Watcher;
  * on 16/3/14.上午8:35
  */
 public class TaskExecutor implements Watcher {
+
+
     public void process(WatchedEvent event) {
 
 

@@ -1,4 +1,4 @@
-package com.niux.netty;
+package com.niux.springmvcdemo;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelInitializer;
