@@ -7,6 +7,25 @@ package com.niux.springmvcdemo.utils;
 public class Test {
 
 
+    public int[] getNext(String b) {
+        int len = b.length();
+        int j = 0;
+
+        int next[] = new int[len + 1];//next表示长度为i的字符串前缀和后缀的最长公共部分，从1开始
+        next[0] = next[1] = 0;
+
+        for (int i = 1; i < len; i++)//i表示字符串的下标，从0开始
+        {//j在每次循环开始都表示next[i]的值，同时也表示需要比较的下一个位置
+            while (j > 0 && b.charAt(i) != b.charAt(j)) j = next[j];
+            if (b.charAt(i) == b.charAt(j)) j++;
+            next[i + 1] = j;
+        }
+
+        return next;
+    }
+
+
+
     static class TestThread extends Thread {
         int inner;
 
@@ -27,13 +46,10 @@ public class Test {
 
     public static void main(String[] args) {
 
-        TestThread testThread = new TestThread(0);
+        Test test = new Test();
+        int[] abcbcs = test.getNext("cccbccccc");
 
-        for (int i = 0; i < 1000; i++) {
-            new Thread(testThread).start();
-        }
+        System.out.println(abcbcs);
 
-        Thread.yield();
-        System.out.println(testThread.inner);
     }
 }
