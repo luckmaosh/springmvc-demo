@@ -13,10 +13,10 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
- * ¿Í»§¶Ë³¤Á¬½ÓµÄ·â×°Àà¡£
+ * å®¢æˆ·ç«¯é•¿è¿æ¥çš„å°è£…ç±»ã€‚
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç04:17:34
- * @author ºîÀÚ
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ04:17:34
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class Connection {
@@ -46,23 +46,23 @@ public class Connection {
 		lastActTime = System.currentTimeMillis();
 		byte [] header = new byte[AbstractMessage.MessageHeaderLength];
 		if(in.read(header)!=AbstractMessage.MessageHeaderLength)
-			throw new IOException("Î´ÄÜ¶ÁÈ¡ÍêÕûµÄ°üÍ·²¿·Ö");
+			throw new IOException("æœªèƒ½è¯»å–å®Œæ•´çš„åŒ…å¤´éƒ¨åˆ†");
 		ByteArrayReader bar = new ByteArrayReader(header);
 		int len = bar.readInt();
-		if(len<0)throw new ParseException("´íÎóµÄ°ü³¤¶ÈĞÅÏ¢");
+		if(len<0)throw new ParseException("é”™è¯¯çš„åŒ…é•¿åº¦ä¿¡æ¯");
 		int type = bar.readInt();
 		byte [] cache = new byte [len];
 		System.arraycopy(header, 0, cache, 0, header.length);
 		if(in.read(cache, header.length, len-header.length)!=len-header.length)
-			throw new IOException("Î´ÄÜ¶ÁÈ¡ÍêÕûµÄ°üÌå²¿·Ö");
+			throw new IOException("æœªèƒ½è¯»å–å®Œæ•´çš„åŒ…ä½“éƒ¨åˆ†");
 		Message m = MessageFactory.getInstance(type);
 		m.parse(cache);
 		return m;
 	}
 	/**
-	 * ÓÃÓÚ·¢ËÍÊı¾İ°ü£¬ÓÉÓÚ°üÍ·È±ÉÙĞòÁĞºÅ£¬ËùÒÔ£¬½»»¥¹ı³Ì£¬Ã¿Ò»½×¶Î±ØĞëµÈµ½ÉÏÒ»½×¶ÎÓ¦´ğ°üÊÕµ½²ÅÄÜ·¢ÆğÏÂ´ÎµÄÇëÇó°ü¡£
-	 * @param m ´ı·¢ËÍµÄĞÅÏ¢°ü
-	 * @return  ¶ÔÓ¦µÄÓ¦´ğ°ü
+	 * ç”¨äºå‘é€æ•°æ®åŒ…ï¼Œç”±äºåŒ…å¤´ç¼ºå°‘åºåˆ—å·ï¼Œæ‰€ä»¥ï¼Œäº¤äº’è¿‡ç¨‹ï¼Œæ¯ä¸€é˜¶æ®µå¿…é¡»ç­‰åˆ°ä¸Šä¸€é˜¶æ®µåº”ç­”åŒ…æ”¶åˆ°æ‰èƒ½å‘èµ·ä¸‹æ¬¡çš„è¯·æ±‚åŒ…ã€‚
+	 * @param m å¾…å‘é€çš„ä¿¡æ¯åŒ…
+	 * @return  å¯¹åº”çš„åº”ç­”åŒ…
 	 * @throws IOException
 	 * @throws ParseException
 	 */

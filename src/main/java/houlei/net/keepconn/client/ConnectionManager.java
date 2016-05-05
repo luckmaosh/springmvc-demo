@@ -11,67 +11,70 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * ¿Í»§¶Ë³¤Á¬½Ó¹ÜÀíÀà£¬¸ºÔğÎ¬³ÖËù²úÉúµÄ³¤Á¬½Ó¡£
+ * å®¢æˆ·ç«¯é•¿è¿æ¥ç®¡ç†ç±»ï¼Œè´Ÿè´£ç»´æŒæ‰€äº§ç”Ÿçš„é•¿è¿æ¥ã€‚
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç04:17:09
- * @author ºîÀÚ
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ04:17:09
+ *
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class ConnectionManager {
-	/**
-	 * ĞÄÌøÖÜÆÚ£¨µ¥Î»£ººÁÃë£©
-	 */
-	private volatile static long activeCycle = 1000;
-	
-	/**
-	 * ´æ·Å²úÉúµÄ³¤Á¬½Ó
-	 */
-	private static Set<Connection> pool = Collections.synchronizedSet(new HashSet<Connection>());
-	
-	/**
-	 * ÓÃÓÚ¶¨Ê±·¢ËÍĞÄÌø°ü
-	 */
-	private static ConnectActiveMonitor monitor = new ConnectActiveMonitor();
-	
-	static{
-		monitor.start();
-	}
-	
-	public static Connection createConnection(String host,int port) throws IOException{
-		Connection conn = new Connection(host,port);
-		pool.add(conn);
-		return conn;
-	}
-	
-	public static Connection createConnection(Socket socket) throws IOException{
-		Connection conn = new Connection(socket);
-		pool.add(conn);
-		return conn;
-	}
-	
-	public static void removeConnection(Connection conn){
-		pool.remove(conn);
-	}
-	
-	static class ConnectActiveMonitor extends Thread{
-		private volatile boolean running = true;
-		public void run(){
-			while(running){
-				long time = System.currentTimeMillis();
-				for(Connection con : pool){
-					try {
-						if(con.getLastActTime()+activeCycle<time)
-							con.send(MessageFactory.getInstance(Message.ActiveTestRequest));
-					} catch (IOException e) {
-						removeConnection(con);
-					} catch (ParseException e) {
-					}
-				}
-				yield();
-			}
-		}
-		void setRunning(boolean b){
-			running = b;
-		}
-	}
+    /**
+     * å¿ƒè·³å‘¨æœŸï¼ˆå•ä½ï¼šæ¯«ç§’ï¼‰
+     */
+    private volatile static long activeCycle = 1000;
+
+    /**
+     * å­˜æ”¾äº§ç”Ÿçš„é•¿è¿æ¥
+     */
+    private static Set<Connection> pool = Collections.synchronizedSet(new HashSet<Connection>());
+
+    /**
+     * ç”¨äºå®šæ—¶å‘é€å¿ƒè·³åŒ…
+     */
+    private static ConnectActiveMonitor monitor = new ConnectActiveMonitor();
+
+    static {
+        monitor.start();
+    }
+
+    public static Connection createConnection(String host, int port) throws IOException {
+        Connection conn = new Connection(host, port);
+        pool.add(conn);
+        return conn;
+    }
+
+    public static Connection createConnection(Socket socket) throws IOException {
+        Connection conn = new Connection(socket);
+        pool.add(conn);
+        return conn;
+    }
+
+    public static void removeConnection(Connection conn) {
+        pool.remove(conn);
+    }
+
+    static class ConnectActiveMonitor extends Thread {
+        private volatile boolean running = true;
+
+        public void run() {
+            while (running) {
+                long time = System.currentTimeMillis();
+                for (Connection con : pool) {
+                    try {
+                        if (con.getLastActTime() + activeCycle < time)
+                            con.send(MessageFactory.getInstance(Message.ActiveTestRequest));
+                    } catch (IOException e) {
+                        removeConnection(con);
+                    } catch (ParseException e) {
+                    }
+                }
+                yield();
+            }
+        }
+
+        void setRunning(boolean b) {
+            running = b;
+        }
+    }
 }

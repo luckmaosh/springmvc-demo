@@ -5,17 +5,17 @@ import houlei.net.keepconn.client.ConnectionManager;
 import java.io.IOException;
 
 /**
- * ²âÊÔĞÄÌø°üµÄ¼òµ¥¿Í»§¶Ë³ÌĞò
+ * æµ‹è¯•å¿ƒè·³åŒ…çš„ç®€å•å®¢æˆ·ç«¯ç¨‹åº
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç05:28:10
- * 
- * @author ºîÀÚ
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ05:28:10
+ *
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class TestClient {
 
-	public static void main(String[] args) throws IOException {
-		ConnectionManager.createConnection("localhost", 65432);
-	}
+    public static void main(String[] args) throws IOException {
+        ConnectionManager.createConnection("localhost", 65432);
+    }
 
 }

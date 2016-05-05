@@ -1,10 +1,10 @@
 package houlei.net.keepconn.messages;
 
 /**
- *	½âÎöÊı¾İ°ü²úÉúÒì³£Ê±Å×³ö¡£
+ *	è§£ææ•°æ®åŒ…äº§ç”Ÿå¼‚å¸¸æ—¶æŠ›å‡ºã€‚
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç02:42:16
- * @author ºîÀÚ
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ02:42:16
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class ParseException extends Exception {

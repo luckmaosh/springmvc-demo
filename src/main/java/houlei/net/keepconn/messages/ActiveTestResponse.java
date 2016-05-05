@@ -3,40 +3,40 @@ package houlei.net.keepconn.messages;
 import houlei.net.keepconn.utils.ByteArrayBuilder;
 
 /**
- *ĞÄÌø°ü£¨Ó¦´ğ°ü£©
+ *å¿ƒè·³åŒ…ï¼ˆåº”ç­”åŒ…ï¼‰
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç04:11:04
- * @author ºîÀÚ
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ04:11:04
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class ActiveTestResponse extends AbstractMessage implements Message {
 
-	/* £¨·Ç Javadoc£©
+	/* ï¼ˆé Javadocï¼‰
 	 * @see houlei.net.keepconn.messages.Message#getBytes()
 	 */
 	public byte[] getBytes() {
 		return new ByteArrayBuilder().write(MessageHeaderLength).write(ActiveTestResponse).toBytes();
 	}
 
-	/* £¨·Ç Javadoc£©
+	/* ï¼ˆé Javadocï¼‰
 	 * @see houlei.net.keepconn.messages.Message#getMessageLength()
 	 */
 	public int getMessageLength() {
 		return MessageHeaderLength;
 	}
 
-	/* £¨·Ç Javadoc£©
+	/* ï¼ˆé Javadocï¼‰
 	 * @see houlei.net.keepconn.messages.Message#getMessageType()
 	 */
 	public int getMessageType() {
 		return ActiveTestResponse;
 	}
 
-	/* £¨·Ç Javadoc£©
+	/* ï¼ˆé Javadocï¼‰
 	 * @see houlei.net.keepconn.messages.Message#parse(byte[])
 	 */
 	public void parse(byte[] b) throws ParseException {
-//		¿Õ°üÌå£¬ËùÒÔ¿Õº¯ÊıÌå¡£
+//		ç©ºåŒ…ä½“ï¼Œæ‰€ä»¥ç©ºå‡½æ•°ä½“ã€‚
 	}
 
 }

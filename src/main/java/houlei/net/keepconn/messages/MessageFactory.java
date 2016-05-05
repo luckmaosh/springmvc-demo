@@ -3,8 +3,8 @@ package houlei.net.keepconn.messages;
 /**
  *
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç04:37:53
- * @author ºîÀÚ
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ04:37:53
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class MessageFactory {
@@ -13,7 +13,7 @@ public class MessageFactory {
 		switch(messageType){
 		case Message.ActiveTestRequest : m= new ActiveTestRequest();break;
 		case Message.ActiveTestResponse : m= new ActiveTestResponse();break;
-		default:throw new RuntimeException("ËùĞèÇóµÄÊı¾İ°üÀàÎ´ÄÜÌá¹©");
+		default:throw new RuntimeException("æ‰€éœ€æ±‚çš„æ•°æ®åŒ…ç±»æœªèƒ½æä¾›");
 		}
 		return m;
 	}

@@ -13,11 +13,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * ²âÊÔĞÄÌø°üµÄ·şÎñ¶Ë¼òµ¥³ÌĞò
+ * æµ‹è¯•å¿ƒè·³åŒ…çš„æœåŠ¡ç«¯ç®€å•ç¨‹åº
  * <p>
- * ´´½¨Ê±¼ä£º2009-10-28 ÏÂÎç05:28:20
+ * åˆ›å»ºæ—¶é—´ï¼š2009-10-28 ä¸‹åˆ05:28:20
  * 
- * @author ºîÀÚ
+ * @author ä¾¯ç£Š
  * @since 1.0
  */
 public class TestServer {
@@ -42,7 +42,7 @@ public class TestServer {
 			while(running){
 				try {
 					Message m = read();
-					System.out.println("ÊÕµ½ĞÅÏ¢");
+					System.out.println("æ”¶åˆ°ä¿¡æ¯");
 					if(m.getMessageType()==Message.ActiveTestRequest){
 						m = MessageFactory.getInstance(Message.ActiveTestResponse);
 					}
@@ -65,15 +65,15 @@ public class TestServer {
 		private Message read() throws IOException, ParseException{
 			byte [] header = new byte[AbstractMessage.MessageHeaderLength];
 			if(in.read(header)!=AbstractMessage.MessageHeaderLength)
-				throw new IOException("Î´ÄÜ¶ÁÈ¡ÍêÕûµÄ°üÍ·²¿·Ö");
+				throw new IOException("æœªèƒ½è¯»å–å®Œæ•´çš„åŒ…å¤´éƒ¨åˆ†");
 			ByteArrayReader bar = new ByteArrayReader(header);
 			int len = bar.readInt();
-			if(len<0)throw new ParseException("´íÎóµÄ°ü³¤¶ÈĞÅÏ¢");
+			if(len<0)throw new ParseException("é”™è¯¯çš„åŒ…é•¿åº¦ä¿¡æ¯");
 			int type = bar.readInt();
 			byte [] cache = new byte [len];
 			System.arraycopy(header, 0, cache, 0, header.length);
 			if(in.read(cache, header.length, len-header.length)!=len-header.length)
-				throw new IOException("Î´ÄÜ¶ÁÈ¡ÍêÕûµÄ°üÌå²¿·Ö");
+				throw new IOException("æœªèƒ½è¯»å–å®Œæ•´çš„åŒ…ä½“éƒ¨åˆ†");
 			Message m = MessageFactory.getInstance(type);
 			m.parse(cache);
 			return m;
