@@ -25,7 +25,6 @@ public class Test {
     }
 
 
-
     static class TestThread extends Thread {
         int inner;
 
@@ -50,6 +49,15 @@ public class Test {
         int[] abcbcs = test.getNext("cccbccccc");
 
         System.out.println(abcbcs);
+
+
+        String a = "id, city_id, group_id, track_id, type ,code_id, user_id, user_name, mobile, status, source, update_time, create_time ,money,code,code_ext,active_url,collection_id,share_id,new_user";
+
+        String[] s = a.split(",");
+        for (String xx : s) {
+            xx = xx.trim();
+            System.out.print("a." + xx + ",");
+        }
 
     }
 }
