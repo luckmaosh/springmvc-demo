@@ -12,7 +12,11 @@
         <property name="testOnBorrow" value="true"/>
     </bean>
 
+<<<<<<< HEAD
     <!--<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.com.niux.spring.jedis.JedisConnectionFactory">-->
+=======
+    <!--<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">-->
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <!--<property name="hostName" value="10.94.34.15"/>-->
         <!--<property name="port" value="8333"/>-->
         <!--<property name="database" value="2"/>-->
@@ -25,7 +29,11 @@
     <!--</bean>-->
 
 
+<<<<<<< HEAD
     <!-- com.niux.spring.jedis 多个服务器配置-->
+=======
+    <!-- jedis 多个服务器配置-->
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
     <bean id="jedisShardInfo1" class="redis.clients.jedis.JedisShardInfo">
         <constructor-arg index="0" value="${redis.sharding.1.host}" />
         <constructor-arg index="1" value="${redis.sharding.1.port}" type="int" />
@@ -48,7 +56,10 @@
         </constructor-arg>
     </bean>
 
+<<<<<<< HEAD
     <bean id="jedisExecutor" class="com.niux.spring.jedis.JedisExecutor">
         <property name="shardedJedisPool" ref="shardedJedisPool"/>
     </bean>
+=======
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
 </beans>

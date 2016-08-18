@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+<<<<<<< HEAD
     <groupId>org.format.demo</groupId>
     <artifactId>springMvcDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -12,6 +13,15 @@
 
     <properties>
         <snapshot>1.0-SNAPSHOT</snapshot>
+=======
+    <groupId>cn.focus</groupId>
+    <artifactId>springMnvDemo</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <properties>
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <spring.version>4.0.6.RELEASE</spring.version>
         <jar.environment>1.0-trunk-SNAPSHOT</jar.environment>
         <zookeeper.version>3.3.3</zookeeper.version>
@@ -20,6 +30,7 @@
 
 
     <dependencies>
+<<<<<<< HEAD
         <dependency>
             <groupId>net.paoding</groupId>
             <artifactId>paoding-rose-context</artifactId>
@@ -40,6 +51,9 @@
             <artifactId>paoding-rose</artifactId>
             <version>${snapshot}</version>
         </dependency>
+=======
+
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
@@ -181,7 +195,16 @@
             <version>4.3.5.Final</version>
         </dependency>
 
+<<<<<<< HEAD
 
+=======
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.3.5.Final</version>
+        </dependency>
+        <!--  hibernate dependency  -->
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
 
 
         <dependency>
@@ -215,11 +238,15 @@
             <version>1.7.4</version>
         </dependency>
 
+<<<<<<< HEAD
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz-weblogic</artifactId>
             <version>2.1.7</version>
         </dependency>
+=======
+
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <!--        servlet         -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -229,7 +256,10 @@
         </dependency>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -275,11 +305,14 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.3</version>
         </dependency>
+<<<<<<< HEAD
         <!--<dependency>-->
             <!--<groupId>com.nuomi</groupId>-->
             <!--<artifactId>coupon-client</artifactId>-->
             <!--<version>1.0-SNAPSHOT</version>-->
         <!--</dependency>-->
+=======
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
 
         <dependency>
             <groupId>com.github.sgroschupf</groupId>
@@ -303,6 +336,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -333,6 +367,53 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+=======
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.8.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.8.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.paoding</groupId>
+            <artifactId>paoding-rose</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.paoding</groupId>
+            <artifactId>paoding-rose-jade</artifactId>
+            <version>1.0-SNAPSHOT</version>
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         </dependency>
     </dependencies>
 
@@ -357,10 +438,40 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
+<<<<<<< HEAD
 
 
+=======
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         </plugins>
         <finalName>generator</finalName>
     </build>
 
+<<<<<<< HEAD
+=======
+
+    <!-- 配置不同环境的配置文件 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <package.environment>dev_resources</package.environment>
+            </properties>
+        </profile>
+        <!-- 可扩展beta,prod环境 -->
+    </profiles>
+
+
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
 </project>

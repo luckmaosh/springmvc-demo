@@ -7,9 +7,16 @@
        default-autowire="byName">
 
     <!-- jsp视图 -->
+<<<<<<< HEAD
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
         <!--<property name="prefix" value="/WEB-INF/view/"></property>-->
         <!--<property name="suffix" value=".jsp"></property>-->
     <!--</bean>-->
+=======
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
 
 </beans>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+<<<<<<< HEAD
     <property name="LOG_HOME" value="D:/workspace/logs"/>
+=======
+    <property name="LOG_HOME" value="/data/logs"/>
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
 
     <!-- 控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -46,7 +50,11 @@
 
 
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+<<<<<<< HEAD
         <file>d:/logs/mylog.txt</file>
+=======
+        <file>${LOG_HOME}/mylog.txt</file>
+>>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>E:/logs/mylog-%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>
             <maxHistory>5</maxHistory>
