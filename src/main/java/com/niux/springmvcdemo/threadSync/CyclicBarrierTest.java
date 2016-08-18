@@ -9,7 +9,6 @@ public class CyclicBarrierTest {
     public static void main(String[] args) {
         new Thread(new Runnable() {
 
-            @Override
             public void run() {
                 try {
                     System.out.println("finish new thread");
