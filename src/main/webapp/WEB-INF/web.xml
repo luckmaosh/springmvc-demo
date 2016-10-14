@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 
 <web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -54,33 +53,6 @@
     <!-- 兼容gbk编码的请求 -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
-=======
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://java.sun.com/xml/ns/javaee"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         id="WebApp_ID"
-         version="3.0">
-
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:springConfig/applicationContext.xml</param-value>
-        <!--<param-value>/WEB-INF/applicationContext.xml</param-value>-->
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-    <context-param>
-        <param-name>logbackConfigLocation</param-name>
-        <param-value>classpath:/log/logback.xml</param-value>
-    </context-param>
-    <listener>
-        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
-    </listener>
-
-    <filter>
-        <filter-name>Set Character Encoding</filter-name>
->>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
@@ -92,17 +64,11 @@
         </init-param>
     </filter>
     <filter-mapping>
-<<<<<<< HEAD
-
         <filter-name>characterEncodingFilter</filter-name>
-=======
-        <filter-name>Set Character Encoding</filter-name>
->>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <!--<filter>-->
-<<<<<<< HEAD
     <!--<filter-name>rpcFilter</filter-name>-->
     <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
     <!--</filter>-->
@@ -124,52 +90,4 @@
     </filter-mapping>
 
 </web-app>
-=======
     <!--<filter-name>helloFilter</filter-name>-->
-    <!--<filter-class>com.niux.netty.filter.HelloFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-    <!--<filter-name>helloFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
-    <filter>
-        <filter-name>MDCInsertingServletFilter</filter-name>
-        <filter-class>
-            ch.qos.logback.classic.helpers.MDCInsertingServletFilter
-        </filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>MDCInsertingServletFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.jpg</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.js</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.css</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>dispatcher</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-
-
-</web-app>
->>>>>>> c8e1033172ad75a905c12354e913a5115c74c43b

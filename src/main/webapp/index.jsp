@@ -7,10 +7,43 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+    <meta name="ProgId" content="FrontPage.Editor.Document">
+    <title>New Page 1</title>
 </head>
+
 <body>
-  <h2>hello world</h2>
+
+<script>
+    function getrow(obj) {
+        if (event.srcElement.tagName == "TD") {
+            curRow = event.srcElement.parentElement;
+            alert("这是第" + (curRow.rowIndex + 1) + "行");
+
+        }
+    }
+</script>
+
+<table border="1" width="100%" onclick=getrow(this)>
+    <tr>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+    </tr>
+    <tr>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+        <td width="20%">　</td>
+    </tr>
+</table>
+
 </body>
+
 </html>
