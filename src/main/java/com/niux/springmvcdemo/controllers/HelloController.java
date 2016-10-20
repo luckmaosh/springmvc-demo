@@ -33,6 +33,19 @@ public class HelloController {
 
         return "cityLayer";
     }
+
+
+    @Get("checkbox")
+    public String checkbox() {
+
+        return "checkbox";
+    }
+    @Get("exportToParent")
+    public String exportToParent() {
+
+        return "exportToParent";
+    }
+
 //
 //    @RequestMapping(value = "/hello", method = RequestMethod.GET)
 //    public String index() {

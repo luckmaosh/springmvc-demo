@@ -10,6 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
     <title>增加Table行</title>
+    <script type="text/javascript" src="static/js/jquery-1.5.1.min.js"></script>
 </head>
 <script>
     function addRow(obj) {
@@ -23,6 +24,9 @@
         newTd1.innerHTML = '<select name="collectType" id="collectType">                <option value=""></option>                <option value="image" #if($!collectType=="image") selected #end >image</option>    <option value="text" #if($!collectType=="text") selected #end >text</option> </select>'
     }
 
+    function deleteRow(item) {
+        item.parentNode.parentNode.remove()
+    }
 
     function createRow() {
         var tr = testTbl.insertRow(testTbl.rows.length);
@@ -42,7 +46,7 @@
         td6.innerHTML = '<input name="is_required" type="radio"        value="1">是</input>'
 
         var td7 = tr.insertCell();
-        td.innerHTML = ''
+        td7.innerHTML = '<a href="javascript:;;" onclick="deleteRow(this)" >删除</a>'
 
 
     }
