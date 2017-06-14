@@ -266,11 +266,11 @@
                 } else {
                     var test = $(this).html();//所选城市的名字
                     console.log("cityname test :" +  test)
-                    $('<li class="licity"><input  name="citychk" type="checkbox" checked="true" city="' + city + '" class="check"><b>' + test + '</b></li>').appendTo('.cityshow ul');
+                    $('<li class="licity"><input  getName="citychk" type="checkbox" checked="true" city="' + city + '" class="check"><b>' + test + '</b></li>').appendTo('.cityshow ul');
                 }
             }
 
-            $('input[name=citychk]').click(function () {
+            $('input[getName=citychk]').click(function () {
                 $(this).parent('.licity').remove();
             });
 

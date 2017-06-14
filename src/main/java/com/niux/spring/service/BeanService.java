@@ -5,4 +5,5 @@ package com.niux.spring.service;
  * on 15/8/24.下午3:25
  */
 public interface BeanService {
+    void getName();
 }

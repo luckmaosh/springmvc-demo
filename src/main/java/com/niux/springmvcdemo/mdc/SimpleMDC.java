@@ -31,7 +31,7 @@ import ch.qos.logback.core.util.StatusPrinter;
 public class SimpleMDC {
     static public void main(String[] args) throws Exception {
         // You can put values in the MDC at any time. Before anything else
-        // we put the first name
+        // we put the first getName
         MDC.put("first", "Dorothy");
 
         // configure via the configuration file "chapters/mdc/simpleMDC.xml"
@@ -44,7 +44,7 @@ public class SimpleMDC {
         programmaticConfiguration();
 
         Logger logger = LoggerFactory.getLogger(SimpleMDC.class);
-        // We now put the last name
+        // We now put the last getName
         MDC.put("last", "Parker");
 
         // The most beautiful two words in the English language according

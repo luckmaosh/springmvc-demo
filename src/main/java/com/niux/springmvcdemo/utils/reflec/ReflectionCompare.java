@@ -105,14 +105,14 @@ public class ReflectionCompare {
         private int age;
 
         /**
-         * @return the name
+         * @return the getName
          */
         public String getName() {
             return name;
         }
 
         /**
-         * @param name the name to set
+         * @param name the getName to set
          */
         public void setName(String name) {
             this.name = name;

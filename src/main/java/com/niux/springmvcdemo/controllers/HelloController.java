@@ -1,9 +1,11 @@
 package com.niux.springmvcdemo.controllers;
 
+import com.niux.spring.service.BeanService;
 import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.annotation.rest.Get;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -16,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
+    @Autowired
+    private BeanService beanService;
+
     @Get
     public String index() {
+        beanService.getName();
         return "index";
     }
 

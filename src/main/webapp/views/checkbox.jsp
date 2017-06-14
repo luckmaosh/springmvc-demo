@@ -19,22 +19,22 @@
 
             $("#btn1").click(function () {
 
-                $("[name='checkbox']").attr("checked", 'true');//全选
+                $("[getName='checkbox']").attr("checked", 'true');//全选
 
             })
             $("#btn2").click(function () {
 
-                $("[name='checkbox']").removeAttr("checked");//取消全选
+                $("[getName='checkbox']").removeAttr("checked");//取消全选
 
             })
             $("#btn3").click(function () {
 
-                $("[name='checkbox']:even").attr("checked", 'true');//选中所有奇数
+                $("[getName='checkbox']:even").attr("checked", 'true');//选中所有奇数
 
             })
             $("#btn4").click(function () { //反选
 
-                $("[name='checkbox']").each(function () {
+                $("[getName='checkbox']").each(function () {
 
 
                     if ($(this).attr("checked")) {
@@ -51,7 +51,7 @@
             })
             $("#btn5").click(function () {
                 var str = "";
-                $("[name='checkbox'][checked]").each(function () {
+                $("[getName='checkbox'][checked]").each(function () {
                     str += $(this).val() + ""
                     r
                     "n";

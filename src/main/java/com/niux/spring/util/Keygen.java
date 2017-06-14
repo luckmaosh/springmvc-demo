@@ -115,7 +115,7 @@ public class Keygen {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.err.printf("*** Usage: %s name%n", Keygen.class.getCanonicalName());
+            System.err.printf("*** Usage: %s getName%n", Keygen.class.getCanonicalName());
             System.exit(1);
         }
         Random r = new Random();

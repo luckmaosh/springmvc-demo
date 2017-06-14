@@ -29,22 +29,22 @@
 
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>default</servlet-name>-->
+        <!--<servgetNamename>default</servgetNamename>-->
         <!--<url-pattern>/views/*</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>default</servlet-name>-->
+        <!--<servgetNamename>default</servgetNamename>-->
         <!--<url-pattern>*.gif</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>default</servlet-name>-->
+        <!--<servgetNamename>default</servgetNamename>-->
         <!--<url-pattern>*.jpg</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>default</servlet-name>-->
+        <!--<servgetNamename>default</servgetNamename>-->
         <!--<url-pattern>*.js</url-pattern>-->
     <!--</servlet-mapping>-->
 
@@ -69,11 +69,11 @@
     </filter-mapping>
 
     <!--<filter>-->
-    <!--<filter-name>rpcFilter</filter-name>-->
+    <!--<filgetNamename>rpcFilter</filgetNamename>-->
     <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-    <!--<filter-name>rpcFilter</filter-name>-->
+    <!--<filgetNamename>rpcFilter</filgetNamename>-->
     <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
@@ -90,4 +90,4 @@
     </filter-mapping>
 
 </web-app>
-    <!--<filter-name>helloFilter</filter-name>-->
+    <!--<filgetNamename>helloFilter</filgetNamename>-->

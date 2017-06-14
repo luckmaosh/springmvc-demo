@@ -9,8 +9,8 @@
     <!-- jsp视图 -->
 <<<<<<< HEAD
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="prefix" value="/WEB-INF/view/"></property>-->
-        <!--<property name="suffix" value=".jsp"></property>-->
+        <!--<propegetNamename="prefix" value="/WEB-INF/view/"></property>-->
+        <!--<propegetNamename="suffix" value=".jsp"></property>-->
     <!--</bean>-->
 =======
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

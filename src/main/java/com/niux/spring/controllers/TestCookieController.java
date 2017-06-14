@@ -28,7 +28,7 @@ public class TestCookieController {
         Cookie[] cookies = request.getCookies();
         logger.info("cookies=" + cookies);
 
-        Cookie namecookie = new Cookie("name", "xiaoming");
+        Cookie namecookie = new Cookie("getName", "xiaoming");
         Cookie passwordcookie = new Cookie("password", "123");
         Cookie optioncookie = new Cookie("option", "12");
 
