@@ -1,7 +1,5 @@
 package com.niux.spring.util;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
 /**
  * Created by shaohuimao@sohu-inc.com
  * on 16/9/7. 上午9:12

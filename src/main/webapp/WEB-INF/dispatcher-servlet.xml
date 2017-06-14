@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
            " default-autowire="byName">
 
-    <context:component-scan base-package="com.niux.springmvcdemo.controllers">
+    <context:component-scan base-package="com.niux.spring.controllers">
         <!--<context:exclude-filter type="regex" expression="org.format.demo.controller.*"/>-->
     </context:component-scan>
 

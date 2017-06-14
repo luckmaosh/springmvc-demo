@@ -21,7 +21,8 @@
     <import resource="dispatcher-servlet.xml"/>
 
 
-    <bean id="beanService" class="com.niux.spring.service.impl.BeanServiceImpl"/>
+    <bean id="beanService" class="com.niux.spring.service.impl.BeanServiceImpl">
+    </bean>
     <bean id="demoService" class="com.niux.spring.service.impl.DemoServiceImpl"/>
     <!--注入配置文件-->
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
