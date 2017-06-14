@@ -1,79 +1,86 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maso
-  Date: 15/8/26
-  Time: 下午2:34
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-    <title>增加Table行</title>
-    <script type="text/javascript" src="static/js/jquery-1.5.1.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>图片上传本地预览</title>
+    <style type="text/css">
+        #preview {
+            width: 260px;
+            height: 190px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+
+        /*#imghead {*/
+            /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);*/
+        /*}*/
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        function change() {
+
+            $.ajax({
+                url: '/json/uploadImageJson.do',
+                type: 'POST',
+                cache: false,
+                data: new FormData($('#f')[0]),
+                processData: false,
+                contentType: false,
+                dataType: "json",
+            }).done(function(res) {
+                $("input#example_pic").val(res.oriurl);
+            }).fail(function(res) {
+//                alert("上传失败")
+            });
+
+            
+            var pic = document.getElementById("preview");
+            var file = document.getElementById("f");
+            var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+            // gif在IE浏览器暂时无法显示
+            if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+                alert("文件必须为图片！");
+                return;
+            }
+            // IE浏览器
+            if (document.all) {
+
+                file.select();
+                var reallocalpath = document.selection.createRange().text;
+                var ie6 = /msie 6/i.test(navigator.userAgent);
+                // IE6浏览器设置img的src为本地路径可以直接显示图片
+                if (ie6) pic.src = reallocalpath;
+                else {
+                    // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                    pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                    // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                    pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                }
+            } else {
+                html5Reader(file);
+            }
+        }
+
+        function html5Reader(file) {
+            var file = file.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                var pic = document.getElementById("preview");
+                pic.src = this.result;
+            }
+        }
+    </script>
 </head>
-<script>
-    function addRow(obj) {
-        //添加一行
-        var newTr = testTbl.insertRow();
-        //添加两列
-        var newTd0 = newTr.insertCell();
-        var newTd1 = newTr.insertCell();
-        //设置列内容和属性
-        newTd0.innerHTML = '<input type=checkbox id="box4">';
-        newTd1.innerHTML = '<select name="collectType" id="collectType">                <option value=""></option>                <option value="image" #if($!collectType=="image") selected #end >image</option>    <option value="text" #if($!collectType=="text") selected #end >text</option> </select>'
-    }
-
-    function deleteRow(item) {
-        item.parentNode.parentNode.remove()
-    }
-
-    function createRow() {
-        var tr = testTbl.insertRow(testTbl.rows.length);
-        var td  = tr.insertCell();
-        var td2 = tr.insertCell();
-        td2.innerHTML = '<input type=checkbox id="box4">'
-//     #if($!collectType=="image") selected #end
-        var td3 = tr.insertCell();
-        td3.innerHTML = '<select name="collectType" id="collectType">                <option value=""></option>                <option value="image" >image</option>    <option value="text" >text</option> </select>'
-
-        var td4 = tr.insertCell()
-
-        var td5 = tr.insertCell();
-        td5.innerHTML = '<input name="is_key_info" type="radio"        value="1">是</input>'
-
-        var td6 = tr.insertCell();
-        td6.innerHTML = '<input name="is_required" type="radio"        value="1">是</input>'
-
-        var td7 = tr.insertCell();
-        td7.innerHTML = '<a href="javascript:;;" onclick="deleteRow(this)" >删除</a>'
-
-
-    }
-</script>
 <body>
-<input type="button" id="add" onclick="createRow();" value="Add Row"/>
-<table id="testTbl" border=1>
-    <tr id="tr1">
-        <td><input type=checkbox id="box1"></td>
-        <td id="b">第一行</td>
-        <td >第一行</td>
-        <td >第一行</td>
-        <td >第一行</td>
-        <td >第一行</td>
-        <td >第一行</td>
-        <td >第一行</td>
-        <td >第一行</td>
-    </tr>
-    <tr id="tr2">
-        <td><input type=checkbox id="box2"></td>
-        <td id="b2">第二行</td>
-    </tr>
-    <tr id="tr3">
-        <td><input type=checkbox id="box3"></td>
-        <td>第三行</td>
-    </tr>
-</table>
-<br/>
+<form enctype="multipart/form-data" name="form1">
+    上传文件：<input id="f" type="file" name="f" onchange="change()"/>
+
+    预览：<img id="preview" alt="" name="pic"/>
+</form>
 </body>
 </html>
