@@ -1,86 +1,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" >
 
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>图片上传本地预览</title>
-    <style type="text/css">
-        #preview {
-            width: 260px;
-            height: 190px;
-            border: 1px solid #000;
-            overflow: hidden;
-        }
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/jquery.lightbox-0.5.css" media="screen" />
 
-        /*#imghead {*/
-            /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);*/
-        /*}*/
-    </style>
-    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-
-        function change() {
-
-            $.ajax({
-                url: '/json/uploadImageJson.do',
-                type: 'POST',
-                cache: false,
-                data: new FormData($('#f')[0]),
-                processData: false,
-                contentType: false,
-                dataType: "json",
-            }).done(function(res) {
-                $("input#example_pic").val(res.oriurl);
-            }).fail(function(res) {
-//                alert("上传失败")
-            });
-
-            
-            var pic = document.getElementById("preview");
-            var file = document.getElementById("f");
-            var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
-            // gif在IE浏览器暂时无法显示
-            if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
-                alert("文件必须为图片！");
-                return;
-            }
-            // IE浏览器
-            if (document.all) {
-
-                file.select();
-                var reallocalpath = document.selection.createRange().text;
-                var ie6 = /msie 6/i.test(navigator.userAgent);
-                // IE6浏览器设置img的src为本地路径可以直接显示图片
-                if (ie6) pic.src = reallocalpath;
-                else {
-                    // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
-                    pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
-                    // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
-                    pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-                }
-            } else {
-                html5Reader(file);
-            }
-        }
-
-        function html5Reader(file) {
-            var file = file.files[0];
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function (e) {
-                var pic = document.getElementById("preview");
-                pic.src = this.result;
-            }
-        }
+        $(function() {
+            $('#gallery a').lightBox({});
+        });
     </script>
+    
 </head>
 <body>
-<form enctype="multipart/form-data" name="form1">
-    上传文件：<input id="f" type="file" name="f" onchange="change()"/>
-
-    预览：<img id="preview" alt="" name="pic"/>
-</form>
+<div id="gallery">
+    <ul>
+        <li>
+            <a href="static/images/image-1.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery').lightBox();">
+                <img src="static/images/thumb-1.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="static/images/image-2.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="static/images/thumb-2.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="static/images/image-3.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="static/images/thumb-3.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="static/images/image-4.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="static/images/thumb-4.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="static/images/image-5.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="static/images/thumb-5.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
