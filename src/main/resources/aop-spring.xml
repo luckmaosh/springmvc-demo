@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- 拦截器 在 withAop() 方法前运行 -->
+    <bean id="aopMethodBeforeInterceptor"
+          class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice">
+            <bean
+                    class="com.niux.spring.aop.MethodBeforeInterceptor"/>
+        </property>
+        <property name="mappedName" value="withAop"></property>
+    </bean>
+
+    <!-- 拦截器 在 withAop() 返回后运行 -->
+    <bean id="aopMethodAfterInterceptor"
+          class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice">
+            <bean
+                    class="com.niux.spring.aop.MethodAfterInterceptor"/>
+        </property>
+        <property name="mappedName" value="withAop"></property>
+    </bean>
+
+    <!-- 拦截器 在异常抛出后运行 -->
+    <bean id="aopThrowsInterceptor"
+          class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice">
+            <bean
+                    class="com.niux.spring.aop.ThrowsInterceptor"/>
+        </property>
+        <property name="mappedName" value="withAop"></property>
+    </bean>
+
+    <bean id="aopService"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 拦截器 -->
+        <property name="interceptorNames">
+            <list>
+                <value>aopMethodBeforeInterceptor</value>
+                <value>aopMethodAfterInterceptor</value>
+                <value>aopThrowsInterceptor</value>
+            </list>
+        </property>
+        <!-- 被拦截的对象 -->
+        <property name="target">
+            <bean
+                    class="com.niux.spring.aop.AopServiceImpl">
+
+                <property name="name" value="forezp"></property>
+
+            </bean>
+        </property>
+    </bean>
+
+</beans>

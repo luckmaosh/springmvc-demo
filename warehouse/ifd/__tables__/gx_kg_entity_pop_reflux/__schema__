@@ -1,0 +1,4 @@
+project=ifd
+table=gx_kg_entity_pop_reflux
+columns=cate_level1_id:STRING,std_cate_level3_id:BIGINT,std_cate_level3_name:STRING,entity_id:STRING,entity_type:STRING,entity_subtype:STRING,entity_name:STRING,pop:STRING,entity_itm_num:BIGINT,entity_status:STRING,is_new:STRING,relating_type:STRING,relating:STRING,pop_rank:BIGINT,pop_trend:STRING
+partitions=ds:STRING

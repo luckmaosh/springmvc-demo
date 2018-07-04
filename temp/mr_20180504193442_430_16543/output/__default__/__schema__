@@ -1,0 +1,3 @@
+project=ifd
+table=wc_out
+columns=key:STRING,cnt:BIGINT

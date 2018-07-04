@@ -19,9 +19,13 @@
     <import resource="applicationContext-dubbo.xml"/>
     <import resource="applicationContext-tx.xml"/>
     <import resource="dispatcher-servlet.xml"/>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="20000000" />
+        <!-- 上传限制 20M -->
+    </bean>
 
-
-    <bean id="beanService" class="com.niux.spring.service.impl.BeanServiceImpl">
+<bean id="beanService" class="com.niux.spring.service.impl.BeanServiceImpl">
     </bean>
     <bean id="demoService" class="com.niux.spring.service.impl.DemoServiceImpl"/>
     <!--注入配置文件-->
