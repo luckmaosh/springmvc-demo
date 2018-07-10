@@ -1,17 +1,19 @@
-package com.niux.spring.aop;
+package com.niux.spring.aop2;
 
 import javax.security.auth.login.AccountException;
 
-public class AopServiceImpl implements IAopService {
+public class Aop2ServiceImpl implements Aop2Service {
 
     private String name = "forezp";
 
-    public void withAop() throws Exception {
+    @Retry
+    public void withAop2() throws Exception {
 
         System.out.println("with aop run: " + name);
 
-        if (name.trim().length() == 0)
-            throw new AccountException("name cannot be null");
+        if (name.trim().length() == 0) {
+        }
+        throw new AccountException("name cannot be null");
     }
 
     public void withoutAop() throws Exception {
