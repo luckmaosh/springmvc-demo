@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestPrepoeseService {
     public static final Logger logger = LoggerFactory.getLogger(TestPrepoeseService.class);
@@ -30,13 +31,18 @@ public class TestPrepoeseService {
 
     TestHighThreadPool testHighThreadPool = new TestHighThreadPool();
 
+    AtomicInteger success = new AtomicInteger();
+
     public String execute() {
         long l = System.currentTimeMillis();
-        Future<String> submit = serviceExecutor.submit(new TestTask(testHighThreadPool));
+        Future<String> submit = serviceExecutor.submit(new PreposeServiceTask(testHighThreadPool));
         String s = null;
         try {
             s = submit.get(100, TimeUnit.MILLISECONDS);
-            logger.info("task result ={} cost={} ", s, (System.currentTimeMillis() - l));
+            if ("ok".equals(s)) {
+                success.addAndGet(1);
+            }
+            logger.info("result={} cost={} successCount={} ", s, (System.currentTimeMillis() - l), success.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

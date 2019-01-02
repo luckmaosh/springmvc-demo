@@ -13,6 +13,8 @@
         <property name="mappedName" value="withAop"></property>
     </bean>
 
+    <bean id="abstractServiceImpl2" class="com.niux.spring.service.AbstractServiceImpl2" init-method="init"/>
+    <bean id="abstractServiceImpl1" class="com.niux.spring.service.AbstractServiceImpl1" init-method="init"/>
     <!-- 拦截器 在 withAop2() 返回后运行 -->
     <bean id="aopMethodAfterInterceptor"
           class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">

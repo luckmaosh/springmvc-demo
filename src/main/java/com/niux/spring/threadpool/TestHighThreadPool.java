@@ -24,6 +24,11 @@ public class TestHighThreadPool {
             },
             new RejectThreadHandler(HIGH_THROUGHPUT_THREAD_POOL_NAME));
 
+    public Future submit(Worker worker) {
+        Future submit = executor.submit(worker);
+        return submit;
+    }
+
 
     public static class RejectThreadHandler implements RejectedExecutionHandler {
 

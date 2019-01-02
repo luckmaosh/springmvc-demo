@@ -26,6 +26,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>apache-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba.external</groupId>
             <artifactId>codehaus.jackson.core</artifactId>
             <version>1.9.1</version>
@@ -366,6 +376,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.util</groupId>
+            <artifactId>taobao-express</artifactId>
+            <version>3.1.11</version>
         </dependency>
     </dependencies>
 
