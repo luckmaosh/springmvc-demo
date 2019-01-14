@@ -7,7 +7,10 @@ import java.util.Random;
  */
 public class TestRandom {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
+        System.out.println(TestRandom.class.getClassLoader());
+        Class<?> aClass = TestRandom.class.getClassLoader().loadClass("com.niux.spring.ByteBuffer2");
+
 
         int c = 0;
         int b = 0;

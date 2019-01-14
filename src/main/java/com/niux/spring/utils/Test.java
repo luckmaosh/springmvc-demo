@@ -46,6 +46,8 @@ public class Test {
 
     public static void main(String[] args) {
 
+
+
         String pecision = "0.98";
         Float f = Float.valueOf(pecision);
         System.out.println(f.compareTo(0.95f));

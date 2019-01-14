@@ -43,9 +43,33 @@
 
 
 
+    <bean id="rspSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="crmDataSource"/>
+        <property name="mapperLocations" value="classpath:mybatis/*.xml"/>
+    </bean>
+
+    <bean id="rspSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="rspSqlSessionFactory"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.taobao.rsp.dal.mybatis"/>
+        <property name="sqlSessionTemplateBeanName" value="rspSessionTemplate"/>
+    </bean>
 
 
 
-
-
+    <!--ads garuda-->
+    <bean id="carSeatMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.niux.spring.car.mapper.CarSeatMapper"/>
+        <property name="sqlSessionFactory" ref="rspSqlSessionFactory"/>
+    </bean>
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.niux.spring.car.mapper.UserMapper"/>
+        <property name="sqlSessionFactory" ref="rspSqlSessionFactory"/>
+    </bean>
+    <bean id="rentRecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.niux.spring.car.mapper.RentRecordMapper"/>
+        <property name="sqlSessionFactory" ref="rspSqlSessionFactory"/>
+    </bean>
 </beans>
