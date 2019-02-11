@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.niux.spring.car.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.niux.spring.car.model.User">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
-    <result column="owner" jdbcType="VARCHAR" property="owner" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="room_no" jdbcType="VARCHAR" property="roomNo" />
-    <result column="seat_no" jdbcType="VARCHAR" property="seatNo" />
-    <result column="location" jdbcType="VARCHAR" property="location" />
-    <result column="city" jdbcType="VARCHAR" property="city" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.niux.spring.car.model.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="owner" jdbcType="VARCHAR" property="owner"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="room_no" jdbcType="VARCHAR" property="roomNo"/>
+        <result column="seat_no" jdbcType="VARCHAR" property="seatNo"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, gmt_create, gmt_modified, owner, status, mobile, room_no, seat_no, location, 
     city
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByRoom" parameterType="java.lang.Strig" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where room_no = #{roomNo,jdbcType=VARCHAR}
+    </select>
+    <select id="selectBySeat" parameterType="java.lang.Strig" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where seat_no = #{seat,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByMobile" parameterType="java.lang.Strig" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.niux.spring.car.model.User">
+    <insert id="insert" parameterType="com.niux.spring.car.model.User">
     insert into user (id, gmt_create, gmt_modified, 
       owner, status, mobile, 
       room_no, seat_no, location, 
@@ -37,107 +55,107 @@
       #{roomNo,jdbcType=VARCHAR}, #{seatNo,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
       #{city,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.niux.spring.car.model.User">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
-      <if test="owner != null">
-        owner,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="roomNo != null">
-        room_no,
-      </if>
-      <if test="seatNo != null">
-        seat_no,
-      </if>
-      <if test="location != null">
-        location,
-      </if>
-      <if test="city != null">
-        city,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="owner != null">
-        #{owner,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="roomNo != null">
-        #{roomNo,jdbcType=VARCHAR},
-      </if>
-      <if test="seatNo != null">
-        #{seatNo,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="city != null">
-        #{city,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.niux.spring.car.model.User">
-    update user
-    <set>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="owner != null">
-        owner = #{owner,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="roomNo != null">
-        room_no = #{roomNo,jdbcType=VARCHAR},
-      </if>
-      <if test="seatNo != null">
-        seat_no = #{seatNo,jdbcType=VARCHAR},
-      </if>
-      <if test="location != null">
-        location = #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="city != null">
-        city = #{city,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.niux.spring.car.model.User">
+    <insert id="insertSelective" parameterType="com.niux.spring.car.model.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="owner != null">
+                owner,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="roomNo != null">
+                room_no,
+            </if>
+            <if test="seatNo != null">
+                seat_no,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="owner != null">
+                #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="roomNo != null">
+                #{roomNo,jdbcType=VARCHAR},
+            </if>
+            <if test="seatNo != null">
+                #{seatNo,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.niux.spring.car.model.User">
+        update user
+        <set>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="owner != null">
+                owner = #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="roomNo != null">
+                room_no = #{roomNo,jdbcType=VARCHAR},
+            </if>
+            <if test="seatNo != null">
+                seat_no = #{seatNo,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.niux.spring.car.model.User">
     update user
     set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},

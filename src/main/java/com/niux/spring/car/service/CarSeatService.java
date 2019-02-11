@@ -1,6 +1,6 @@
 package com.niux.spring.car.service;
 
-import com.niux.spring.car.model.CarSeatDO;
+import com.niux.spring.car.model.CarSeat;
 
 import java.util.Date;
 import java.util.List;
@@ -20,7 +20,7 @@ public interface CarSeatService {
      * @param limit
      * @return
      */
-    List<CarSeatDO> findCardSeat(String location, int start, int limit);
+    List<CarSeat> findCardSeat(String location, int start, int limit);
 
     /**
      * 发布车位出租

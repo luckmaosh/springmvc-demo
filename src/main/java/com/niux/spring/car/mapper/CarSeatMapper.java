@@ -2,6 +2,8 @@ package com.niux.spring.car.mapper;
 
 import com.niux.spring.car.model.CarSeat;
 
+import java.util.List;
+
 public interface CarSeatMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,5 @@ public interface CarSeatMapper {
     int updateByPrimaryKeySelective(CarSeat record);
 
     int updateByPrimaryKey(CarSeat record);
+    List<CarSeat> find(String location , int start , int limit );
 }
