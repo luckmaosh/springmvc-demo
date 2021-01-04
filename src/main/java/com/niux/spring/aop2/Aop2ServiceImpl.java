@@ -1,7 +1,5 @@
 package com.niux.spring.aop2;
 
-import javax.security.auth.login.AccountException;
-
 public class Aop2ServiceImpl implements Aop2Service {
 
     private String name = "forezp";

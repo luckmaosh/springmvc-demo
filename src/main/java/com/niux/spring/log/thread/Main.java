@@ -18,9 +18,13 @@ class MyThread extends Thread {
         try {
             hello.join(); // MyThread 等待hello线程结束
         } catch (InterruptedException e) {
-            System.out.println("interrupted!");
+            System.out.println("hello thread interrupted!");
         }
+
+        System.out.println("hello thread " + hello.isInterrupted());
         hello.interrupt();
+
+        System.out.println("hello thread " + hello.isInterrupted());
     }
 }
 
