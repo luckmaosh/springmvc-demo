@@ -1,6 +1,5 @@
 package com.niux.spring.aop;
 
-import com.niux.spring.aop2.Aop2ServiceImpl;
 import org.springframework.aop.MethodBeforeAdvice;
 
 import java.lang.reflect.Method;
@@ -12,13 +11,13 @@ public class MethodBeforeInterceptor implements MethodBeforeAdvice {
 
         System.out.println("method invoke:" + method.getName());
 
-        if (instance instanceof Aop2ServiceImpl) {
-
-            String name = ((Aop2ServiceImpl) instance).getName();
-
-            if (name == null)
-                throw new NullPointerException("name cannot be null");
-        }
+//        if (instance instanceof Aop2ServiceImpl) {
+//
+//            String name = ((Aop2ServiceImpl) instance).getName();
+//
+//            if (name == null)
+//                throw new NullPointerException("name cannot be null");
+//        }
 
     }
 
