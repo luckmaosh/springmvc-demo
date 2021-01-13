@@ -1,4 +1,4 @@
-package com.niux.spring.log.linkreverse;
+package com.niux.spring.algorithm.linkreverse;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

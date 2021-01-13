@@ -1,4 +1,4 @@
-package com.niux.spring;
+package com.niux.spring.algorithm;
 
 class MultipleStringSolution {
 

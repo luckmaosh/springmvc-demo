@@ -1,4 +1,4 @@
-package com.niux.spring.log.linkreverse;
+package com.niux.spring.algorithm.linkreverse;
 
 class ResverGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
@@ -29,17 +29,49 @@ class ResverGroup {
         return hair.next;
     }
 
+    /**
+     * 反转链表
+     *
+     * @param head
+     * @param tail
+     * @return
+     */
     public ListNode[] myReverse(ListNode head, ListNode tail) {
         ListNode prev = tail.next;
-        ListNode p = head;
+        ListNode start = head;
         while (prev != tail) {
-            ListNode nex = p.next;
-            p.next = prev;
-            prev = p;
-            p = nex;
+            ListNode nex = start.next;
+            start.next = prev;
+            prev = start;
+            start = nex;
         }
         return new ListNode[]{tail, head};
     }
+
+
+    private ListNode reverse(ListNode start, ListNode end) {
+
+        ListNode pre = end;
+        ListNode n = null;
+        while (start != end) {
+            n = start;
+
+            n.next = pre.next;
+            pre.next = n;
+            start = start.next;
+
+        }
+        return pre;
+//        ListNode prev = end;
+//        while(start != end) {
+//            ListNode next = start.next;
+//            start.next = prev;
+//            prev = start;
+//            start = next;
+//        }
+//        return prev;
+    }
+
 }
 //
 //作者：LeetCode-Solution

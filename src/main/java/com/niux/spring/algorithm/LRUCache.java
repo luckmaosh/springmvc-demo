@@ -1,4 +1,4 @@
-package com.niux.spring.log;
+package com.niux.spring.algorithm;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

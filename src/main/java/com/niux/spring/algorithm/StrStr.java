@@ -1,4 +1,4 @@
-package com.niux.spring.log;
+package com.niux.spring.algorithm;
 
 public class StrStr {
 

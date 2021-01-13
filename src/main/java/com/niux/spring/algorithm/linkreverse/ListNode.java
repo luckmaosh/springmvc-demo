@@ -1,4 +1,4 @@
-package com.niux.spring.log.linkreverse;
+package com.niux.spring.algorithm.linkreverse;
 
 public class ListNode {
     int val;
