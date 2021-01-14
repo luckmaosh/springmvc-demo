@@ -1,6 +1,5 @@
 package com.niux.spring;
 
-import javax.management.relation.RoleUnresolved;
 import java.sql.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
