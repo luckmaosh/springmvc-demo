@@ -1,11 +1,14 @@
 package com.niux.spring.algorithm;
 
-class Solution {
+/**
+ * 中位数
+ */
+class MedianSortedArray {
 
     public static void main(String[] args) {
         int[] nums1 = new int[]{1, 2};
-        int[] nums2 = new int[]{3,4};
-        Solution solution = new Solution();
+        int[] nums2 = new int[]{3, 4};
+        MedianSortedArray solution = new MedianSortedArray();
         solution.findMedianSortedArrays(nums1, nums2);
     }
 

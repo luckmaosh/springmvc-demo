@@ -416,6 +416,11 @@
             <artifactId>taobao-express</artifactId>
             <version>3.1.11</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
     </dependencies>
 
 
