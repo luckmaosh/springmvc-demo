@@ -56,7 +56,7 @@ class Solution {
      * dp[i][j] = dp[i][j-1] \vee dp[i-1][j]
      * dp[i][j]=dp[i][j−1]∨dp[i−1][j]
      *
-     * 作者：LeetCode-Solution
+     * 作者：LeetCode-Solution1
      * 链接：https://leetcode-cn.com/problems/wildcard-matching/solution/tong-pei-fu-pi-pei-by-leetcode-solution/
      * 来源：力扣（LeetCode）
      * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
@@ -95,7 +95,7 @@ class Solution {
     }
 }
 
-//作者：LeetCode-Solution
+//作者：LeetCode-Solution1
 //        链接：https://leetcode-cn.com/problems/wildcard-matching/solution/tong-pei-fu-pi-pei-by-leetcode-solution/
 //        来源：力扣（LeetCode）
 //        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
