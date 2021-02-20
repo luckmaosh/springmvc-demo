@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.util.concurrent.ExecutorService;
 
 /**
+ * 令牌桶
  * @author xiezhengchao
  * @since 18/1/3 上午9:45.
  * 限流器

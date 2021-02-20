@@ -14,7 +14,9 @@ public class Client {
 
         System.out.println("**********************JDKProxy**********************");
         JDKProxy jdkPrpxy = new JDKProxy();
-        IUserManager userManagerJDK = (IUserManager) jdkPrpxy.newProxy(new UserManagerImpl());
+        IUserManager userManager1 = new UserManagerImpl();
+        IUserManager userManagerJDK = (IUserManager) jdkPrpxy.newProxy(userManager1);
+
 
         userManagerJDK.addUser("jpeony", "123456");
         System.out.println(userManagerJDK instanceof UserManagerImpl);
