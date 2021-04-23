@@ -16,7 +16,7 @@
 
         <spring.version>4.0.6.RELEASE</spring.version>
         <jar.environment>1.0-trunk-SNAPSHOT</jar.environment>
-        <zookeeper.version>3.3.3</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <zkclient.version>0.1</zkclient.version>
         <sdk.version>0.28.4-public</sdk.version>
         <maven.compiler.source>1.8</maven.compiler.source>
